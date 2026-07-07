@@ -1,0 +1,606 @@
+\chapter{Ma trận thực trong nhóm \texorpdfstring{$T_n(K)$}{Tn(K)}}
+\label{ch:chuong2}
+
+Để đi sâu vào việc xác định và chứng minh các lớp phần tử thực trong nhóm ma trận tam giác, trước hết ta cần thống nhất một số ký hiệu. Ký hiệu $e$ sẽ được dùng để chỉ ma trận đơn vị, trong đó kích thước cụ thể của ma trận sẽ được ngầm hiểu dựa theo ngữ cảnh. Ký hiệu $e_{ij}$ dùng để chỉ một ma trận chỉ có duy nhất một phần tử bằng $1$ ở vị trí dòng $i$, cột $j$, còn tất cả các vị trí khác đều bằng $0$. 
+
+Đối với ma trận đường chéo, chúng ta sử dụng ký hiệu $\diag(d_1, \dots, d_n)$ để chỉ ma trận có các phần tử nằm trên đường chéo chính lần lượt là $d_1, \dots, d_n$. Tổng quát hơn, $\Diag(b_1, b_2, \dots, b_r)$ sẽ được dùng để chỉ một ma trận khối đường chéo, ma trận mà các khối trên đường chéo chính lần lượt là $b_1, \dots, b_r$. 
+
+Khi đề cập đến khái niệm ``siêu đường chéo thứ $r$'' của một ma trận $g$, ta đang muốn nói đến $(g_{1, 1+r}, g_{2, 2+r}, \dots, g_{n-r, n})$. Một siêu đường chéo thứ $r$ được gọi là khác 0 nếu mọi phần tử $g_{i, i+r}$ đều khác $0$ với $1\le i\le n-r$.
+
+Các kí hiệu cho tập hợp các ma trận được sử dụng trong bài như sau:
+\begin{gather*}
+    -UT_n(K) = \{ g \in T_n(K): -g \in UT_n(K) \}; \\
+    \begin{aligned}
+    UT_n^{m+}(K) = \{ & g \in T_n(K): g_{ij} = 0 ~\forall 0<j-i<m, \\ & g_{i,i+m} \neq 0 ~\forall 1 \le i \le n - m \};
+    \end{aligned} \\
+    UT_n^{m-}(K) = \{ g \in  T_n(K): -g \in UT_n^{m+}(K) \}; \\
+    UT_n^{m\pm}(K) = UT_n^{m+}(K) \cup UT_n^{m-}(K); \\
+    \pm UT_n(K) = \{ g \in  T_n(K): g_{ii} \in \{ -1, 1 \} ~\forall 1 \le i \le n \}; \\
+    \pm D_n(K) = \{ \diag(\beta_1, \dots, \beta_n): \beta_i \in \{ -1, 1 \} ~\forall 1 \le i \le n \}.
+\end{gather*}
+
+Lưu ý nếu $\Char(K) = 2$, thì $UT_{n}^{m+}(K)$ và $UT_{n}^{m-}(K)$ trùng với nhau. Do đó để tránh hiểu lầm, mỗi khi ta xét đến tập $UT_{n}^{m-}(K)$ hay $- UT_n(K)$, ta đang giả sử $\Char(K)\neq2$.
+
+Ta bắt đầu với nhận xét về các tính chất của phần tử thực.
+
+\begin{rem}\label{rem:nhanxet1}
+Cho $K$ là trường bất kỳ
+\begin{thmenum}
+    \item Nếu một phần tử $g$ là phần tử thực trong nhóm $G$ thì liên hợp của nó, $g^h$, cũng là một phần tử thực trong $G$.
+    \item Nếu $g$ là phần tử thực trong $G$ và đồng thời ma trận đối $-g$ cũng thuộc $G$, thì $-g$ cũng là một phần tử thực trong nhóm $G$.
+\end{thmenum}
+\end{rem}
+
+Để phục vụ cho chứng minh các định lý chính, ta có các bổ đề sau.
+
+\begin{lem}\label{lem:bode2.1}
+Cho $K$ là một trường bất kỳ, ta có các khẳng định sau:
+\begin{thmenum}
+    \item Nếu $g\in UT_{n}^{m+}(K)$ với $1\le m\le n$ thì $g^{-1}\in UT_{n}^{m+}(K)$ và ta có $(g^{-1})_{i, i+m} = -g_{i, i+m}$ với mọi $1\leq i\leq n-m$.
+    \item Nếu $g\in UT_{n}^{m-}(K)$ với $1\le m\le n$ thì $g^{-1}\in UT_{n}^{m-}(K)$ và ta có $(g^{-1})_{i, i+m} = -g_{i, i+m}$ với mọi $1\leq i\leq n-m$.
+\end{thmenum}
+\end{lem}
+
+\begin{proof}
+Ta chỉ cần kiểm tra khẳng định thứ nhất. Gọi $UT_n^m(K)$ là tập hợp tất cả các ma trận tam giác trên có $m-1$ siêu đường chéo đầu tiên phía trên đường chéo chính toàn bằng $0$. Tập này tạo thành một nhóm con của nhóm ma trận tam giác đơn vị $UT_n(K)$. Gọi $\Phi$ là ánh xạ từ $UT_n^{m+}(K)$ vào $K^{n-m}$ cho bởi $\Phi(g)=(g_{1,1+m},\dots,g_{n-m,n})$.
+Bằng cách tính toán trực tiếp trên ma trận, ta thu được $\Phi(gh)=\Phi(g)+\Phi(h)$ với mọi $g,h\in UT_n^{m+}(K)$, và do đó $\Phi(g^{-1}) = (-g_{1,1+m},\dots,-g_{n-m,n})$.
+\end{proof}
+
+\begin{lem}\label{lem:bode2.2}
+Cho $K$ là một trường. Giả sử một số tự nhiên $0<m\le n$, ta có các khẳng định sau:
+\begin{thmenum}
+    \item Nếu $g\in UT_{n}^{m+}(K)$, thì $g$ đồng dạng với $\tilde{g} = e + \sum_{i=1}^{n-m} g_{i, i+m} e_{i, i+m}$ trong $T_n(K)$.
+    \item Nếu $g\in UT_{n}^{m-}(K)$, thì $g$ đồng dạng với $\tilde{g} = e + \sum_{i=1}^{n-m} g_{i, i+m} e_{i, i+m}$ trong $T_n(K)$.
+\end{thmenum}
+\end{lem}
+
+\begin{proof}
+Giả sử $g \in UT_n^{m+}(K)$. Khi đó, $g$ đồng dạng với $\tilde{g}$ thông qua một ma trận tam giác $t$ nào đó nếu và chỉ nếu hệ thức $t\tilde{g} = gt$ được thỏa mãn. Các phần tử của ma trận $t$ như vậy phải thỏa mãn hệ phương trình sau đây:
+\begin{equation*}
+\left\{
+\begin{aligned}
+&t_{kk} = t_{k, k+m}\,, \\
+&g_{k, k+m} t_{k+m, r} = t_{kk} g_{kr} - \sum_{i=m+1}^{r-k} g_{k, k+i} t_{k+i, r} \quad \text{với } r \ge k+m+1.
+\end{aligned}
+\right.
+\end{equation*}
+Vì ta có $g_{k, k+m} \neq 0$ và hệ số $t_{k+m, r}$ chỉ phụ thuộc vào các phần tử của các siêu đường chéo nằm phía dưới đường chéo thứ $r-k+m$. Ta hoàn toàn có thể giải hệ phương trình này bằng phương pháp quy nạp: 
+\begin{itemize}
+    \item Đầu tiên, chọn các phần tử $t_{kk}$ khác không tùy ý, ta xác định được đường chéo chính. 
+    \item Tiếp theo, sử dụng họ phương trình thứ nhất, ta xác định được siêu đường chéo thứ $m$.
+    \item Sau đó, sử dụng họ phương trình thứ hai, ta tính được các phần tử trên siêu đường chéo thứ $m+1$ bởi các phần tử trên siêu đường chéo thứ $m$ và đường chéo chính, rồi tính siêu đường chéo thứ $m+2$ theo siêu đường chéo thứ $m$, $m+1$ và đường chéo chính. Cứ tiếp tục như vậy đến hết, ta sẽ giải được ma trận $t$ thỏa mãn hệ phương trình trên.
+\end{itemize}
+Chứng minh cho ý thứ hai được suy ra trực tiếp từ ý thứ nhất và \cref{rem:nhanxet1}.
+\end{proof}
+
+Như vậy theo \cref{lem:bode2.2}, ta có thể quy ước rằng mỗi khi xét một ma trận $g$ thuộc tập $UT_n^{m+}(K)$, ta có thể giả định nó có dạng
+\[
+g = \begin{pmatrix} 
+1 &   &   & g_{1, 1+m} &   &   \\ 
+  & 1 &   &   & g_{2, 2+m} &   \\ 
+  &   & 1 &   &   & \ddots \\ 
+  &   &   & \ddots &   &   \\ 
+  &   &   &   & 1 &   \\ 
+0 &   &   &   &   & 1 
+\end{pmatrix}.
+\]
+Trong đó, tại các vị trí trống thì các hệ số đều bằng $0$. Hơn nữa, theo \cref{lem:bode2.1} ta có $(g^{-1})_{i, i+m} = -g_{i, i+m}$ đối với $g \in UT_n^{m+}(K)$. Do đó, nếu thuận tiện cho việc tính toán, ta có thể giả sử ma trận $g$ có dạng sao cho ma trận nghịch đảo của nó thỏa mãn
+\[
+g^{-1} = \begin{pmatrix} 
+1 &   &   & -g_{1, 1+m} &   &   \\ 
+  & 1 &   &   & -g_{2, 2+m} &   \\ 
+  &   & 1 &   &   & \ddots \\ 
+  &   &   & \ddots &   &   \\ 
+  &   &   &   & 1 &   \\ 
+0 &   &   &   &   & 1 
+\end{pmatrix}
+\]
+Lập luận tương tự đối với trường hợp $g \in UT_n^{m-}(K)$.
+
+Giả sử $g \in T_n(K)$ đồng dạng với $g^{-1}$ qua $x \in T_n(K)$, tức là $x^{-1}gx = g^{-1}$. Khi đó, các phần tử của các ma trận này phải thỏa mãn phương trình.
+\begin{equation}\label{eq:hephuongtrinh_x}
+x_{k, k+r} (1 - g_{kk} g_{k+r, k+r}) = \sum_{\substack{k \le i \le j \le k+r \\ (i,j) \neq (k, k+r)}} g_{ki} x_{ij} g_{j, k+r}
+\end{equation}
+, với $k = 1, \dots, n$ và $r = 0, 1, \dots, n-k$. Lưu ý rằng hệ số $x_{k, k+r}$ chỉ phụ thuộc vào các hệ số của $g$ và $x$ nằm trên đường chéo chính, siêu đường chéo thứ 1, $\dots$, siêu đường chéo thứ $r-1$, và nằm trên các dòng $1,2,\dots,k$. Điều này gợi ý rằng \cref{eq:hephuongtrinh_x} có thể được giải bằng phương pháp quy nạp.
+
+Mặt khác, từ \cref{eq:hephuongtrinh_x}, với $r = 0$, ta thu được $g_{kk}^2 = 1$ với mọi $k$ nên $g_{kk} = \pm 1$. Do đó mọi phần tử thực trong $T_n(K)$ đều nằm trong nhóm con $\pm UT_n(K)$.
+
+Tiếp theo, ta có mệnh đề sau.
+
+\begin{rem} \label{rem:truonghop_n=2}
+    Xét 
+    \cref{eq:hephuongtrinh_x} với $r = 1$. Ta có:
+    \begin{thmenum}
+        \item Trong trường hợp $n > 2$ thì việc giải $(g x g)_{i,i+1} = x_{i,i+1}$ hoàn toàn tương đương với việc kiểm tra tính thực của một ma trận $2 \times 2$.
+        \[
+        \begin{pmatrix}
+            x_{ii}  &x_{i,i+1}\\
+            0       &x_{i+1,i+1}
+        \end{pmatrix}^{-1}
+        \begin{pmatrix}
+            g_{ii}  &g_{i,i+1}\\
+            0       &g_{i+1,i+1}
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_{ii}  &x_{i,i+1}\\
+            0       &x_{i+1,i+1}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            g_{ii}  &g_{i,i+1}\\
+            0       &g_{i+1,i+1}
+        \end{pmatrix}^{-1}.
+        \]
+        \item Nếu $g_{ii} = g_{i+1,i+1}$ thì sẽ không có ràng buộc nào cho $x_{i,i+1}$ và do đó ta có thể chọn một giá trị thích hợp cho $x_{i,i+1}$ để giải các phương trình sau đó.
+        \item Trong mọi trường hợp, nếu cho trước $x_{ii}$ (hoặc $x_{i+1,i+1}$), ta luôn tìm được $x_{i,i+1}$ và $x_{i+1,i+1}$ (tương ứng $x_{ii}$) thỏa phương trình.
+        \item Ta thấy rằng nếu có ràng buộc cho các hệ số trên đường chéo thì nó sẽ là $x_{ii} = -x_{i+1,i+1}$. Do đó trong trường hợp $n = 2$, ta có thể chọn cho các hệ số trên đường chéo chính là $1$ hoặc $-1$. 
+    \end{thmenum}
+\end{rem}
+
+\begin{prop}\label{prop:menhde2.3}
+Cho $K$ là một trường bất kì và $n\leq4$. Tập tất cả các phần tử thực trong $T_n(K)$ chính là $\pm UT_n(K)$.
+\end{prop}
+
+\begin{proof}
+
+Ta sẽ lần lượt chứng minh cho các trường hợp $n=2,3,4.$ Đầu tiên là trường hợp $n=2$.
+
+    Điều kiện cần và đủ để một ma trận $g\in UT_n(K)$ thực trong $T_n(K)$ là tồn tại một ma trận $x\in T_n(K)$ thỏa \cref{eq:hephuongtrinh_x},
+    với \(k = 1,\dots,n\) và \(r = 0,\dots,n-k\). Khi \(n = 2\), họ phương trình này sẽ trở thành
+    \[
+        (1 - g_{11} g_{22}) x_{12} = g_{11} x_{11} g_{12} + g_{12} x_{22} g_{22}\,.
+    \]
+    
+    Ta biện luận theo \((1 - g_{11} g_{22})\). Nếu \((1 - g_{11} g_{22}) = 0\), nghĩa là $g_{11} = g_{22}$, phương trình trở thành
+    \[
+        g_{12}(x_{11} + x_{22}) = 0.
+    \]
+    Phương trình này luôn nhận nghiệm \( (x_{11}, x_{22}) \in \{(-t,t): t \in K^*\} \) và $x_{12}$ tùy ý. Ngoài ra, nếu $g_{12} = 0$ thì phương trình tự động thỏa và $x_{11}, x_{22}$ không cần ràng buộc trái dấu. Đây là một đánh giá quan trọng để giải các ma trận kích thước lớn hơn. 
+    
+    Nếu $(1 - g_{11} g_{22}) \neq 0$, điều này chỉ xảy ra khi $\Char{K} \neq 2$, ta có $g_{11} = -g_{22}$ và phương trình khi đó trở thành
+    \[
+        x_{12} = \frac{g_{11} g_{12}}{2} (x_{11} - x_{22}).
+    \]
+    Như vậy ở trường hợp này, $x_{11}$ và $x_{22}$ có thể được lựa chọn tùy ý, miễn là đảm bảo tính khả nghịch. Khi đó, ta luôn tìm được $x_{12}$ theo các hệ số còn lại để thỏa mãn phương trình.
+
+Ta tiếp tục với trường hợp $n = 3$.
+
+    Với $n = 3$, \cref{eq:hephuongtrinh_x} sẽ trở thành, với $r = 1$, là
+    \[
+        \left\{ \begin{aligned}
+        &(1 - g_{11} g_{22}) x_{12} = g_{11} x_{11} g_{12} + g_{12} x_{22} g_{22}, \\
+        &(1 - g_{22} g_{33}) x_{23} = g_{22} x_{22} g_{23} + g_{23} x_{33} g_{33}.
+        \end{aligned} \right.
+    \]
+    Và với $r = 2$ là
+    \[
+        (1 - g_{11} g_{33}) x_{13} = g_{11} x_{11} g_{13} + g_{11} x_{12} g_{23}
+        + x_{22} g_{23} + g_{12} x_{23} g_{33} + g_{13} x_{33} g_{33}.
+    \]
+    
+    Đầu tiên, ta xét trường hợp $1 - g_{11} g_{33} \neq 0$ để phương trình tại vị trí $(1,3)$ luôn có thể giải được bằng cách tính $x_{13}$ theo các hệ số còn lại. Khi đó ta phải có $\Char(K) \neq 2$ và $g_{11} = -g_{33}$. Theo ý (1) và (3) của \cref{rem:truonghop_n=2}, ta sẽ giải các hệ số còn lại như sau. Với phương trình vị trí $(1,2)$, ta sẽ chọn tùy ý $x_{11} \in K^*$. Khi đó, ta xác định được $x_{12}, x_{22}$ thỏa phương trình vị trí $(1,2)$. Và với $x_{22}$ như trên, ta lại tiếp tục xác định $x_{23}, x_{33}$ thỏa phương trình vị trí $(2,3)$. Lưu ý rằng theo ý (4) của \cref{rem:truonghop_n=2} thì ta hoàn toàn có thể chọn $x_{11},x_{22},x_{33} \in \{-1,1\}$.
+
+    Tiếp theo, hãy xét trường hợp $1 - g_{11} g_{33} = 0$ hay $g_{11} = g_{33}$. Khi đó phương trình vị trí $(1,3)$ trở thành
+    \[
+        g_{11} x_{11} g_{13} + g_{11} x_{12} g_{23}
+        + x_{22} g_{23} + g_{12} x_{23} g_{33} + g_{13} x_{33} g_{33} = 0.
+    \]
+    Và ta sẽ có đường chéo chính thuộc một trong hai nhánh $g_{11} = g_{22} = g_{33}$ hay $g_{11} = -g_{22} = g_{33}$. Nếu rơi vào nhánh $g_{11} = g_{22} = g_{33}$ thì theo ý (2) của \cref{rem:truonghop_n=2}, hai hệ số $x_{12}$ và $x_{23}$ sẽ không bị ràng buộc bởi các phương trình trên siêu đường chéo thứ nhất (ứng với $r = 1$), và như vậy nếu $g_{23} \neq 0$ hay $g_{12} \neq 0$ thì phương trình vị trí $(1,3)$ luôn có thể giải theo $x_{12}$ hay $x_{23}$. còn nếu $g_{12} = g_{23} = 0$ thì $x_{11}$ và $x_{33}$ sẽ không còn ràng buộc trái dấu với $x_{22}$ (xem lại chứng minh cho trường hợp $n =  2$) và phương trình vị trí $(1,3)$ sẽ trở thành
+    \[
+        g_{13} (x_{11} + x_{33}) = 0.
+    \]
+    Phương trình này luôn nhận nghiệm $(x_{11}, x_{33}) \in \{ (-t,t): t \in K^* \}$. Và do đó, một lần nữa, ta có thể chọn cho $(x_{11},x_{22},x_{33}) \in \{-1,1\}$.
+
+    Ta còn lại nhánh $g_{11} = -g_{22} = g_{33}$. Lưu ý rằng nếu $g_{22} = -g_{22}$ (xảy ra khi $\Char(K) = 2$) thì ta sẽ xét vào gộp vào nhánh trên. Do vậy ở đây ta giả sử $2 \neq 0$. Khi đó từ hai phương trình của hệ $r = 1$, ta giải ra được
+    \[
+        \left\{ \begin{aligned}
+            & x_{12} = \frac{g_{11} g_{12}}{2} (x_{11} - x_{22}), \\      & x_{23} = \frac{g_{22} g_{23}}{2} (x_{22} -x_{33}) = -\frac{g_{11} g_{23}}{2} (x_{22} - x_{23}).     
+        \end{aligned} \right.
+    \]
+    Thay vào phương trình vị trí $(1,3)$, ta thu được
+    \[
+        \left( g_{11} g_{13} + \frac{g_{12} g_{23}}{2} \right) (x_{11} + x_{33}) = 0.
+    \]
+    Phương trình này nhận nghiệm $(x_{11},x_{33}) \in \{(-t,t): t \in K^*\}$. Lại một lần nữa, ta thấy rằng trong trường hợp này nói riêng hay toàn bộ trường hợp $n = 3$ nói chung, luôn có thể chọn cho các phần tử trên đường chéo chính của $x$ thuộc $\{-1,1\}$.
+
+ Như vậy từ trường hợp $n = 2$ và $n = 3$, ta thấy rằng một ma trận là thực trong $T_n(K)$ khi và chỉ khi nó thực $\pm UT_n(K)$. Ta sẽ tiếp tục kiểm tra tính chất này cho trường hợp $n = 4$. Để đơn giản, ta sẽ bắt đầu với trường hợp \( g_{11} = -g_{44} \) để phương trình vị trí $(1,4)$ luôn giải được theo $x_{14}$ khi cho trước tùy ý các hệ số còn lại. Lưu ý rằng khi đó ta cần giả sử \( \Char(K) \neq 2 \) để tránh trường hợp $g_{11} = -g_{44} = g_{44}$.
+
+     Ta chia bài toán thành hai trường hợp. trường hợp 1, khi tồn tại một cặp trái dấu \( g_{11} = -g_{33} \) hay \( g_{22} = - g_{44} \). Ở đây, ta sẽ làm cho trường hợp \( g_{11} = -g_{33} \). Khi đó, việc giải hệ các phương trình tại các vị trí \( (2,3) \), \( (3,4) \) và \( (2,4) \) tương đương với việc kiểm tra tính thực của một ma trận kích thước \( 3 \times 3\). Do đó, ta sẽ xác định được các hệ số \( x_{22},x_{23},x_{24}, x_{33},x_{34} \) thỏa hệ ba phương trình này. Từ ý (3) của \cref{rem:truonghop_n=2}, ta thấy rằng với $x_{22}$ tùy ý đã xác định trước, ta tìm được $x_{11}$ và $x_{12}$ thỏa phương trình vị trí $(1,2)$. Khi đó, do hệ số đứng trước $x_{13}$ của phương trình vị trí $(1,3)$ là \( 1 - g_{11} g_{33} = 2 \neq 0 \) nên ta có thể giải phương trình này theo $x_{13}$ với \( x_{11},x_{12},x_{22}, x_{23},x_{33} \) đã xác định như trên.
+
+     Ở trường hợp còn lại, ta sẽ thu được đường chéo có dạng đan dấu \( g_{11} = -g_{22} = g_{33} = - g_{44} \). Khi đó tương tự như đã làm với trường hợp $n = 2$, ta sẽ tính được các hệ số \( x_{12}, x_{23}, x_{34} \) theo công thức
+     \[
+        \left\{ \begin{aligned}
+            & x_{12} = \frac{g_{11} g_{12}}{2} (x_{11} - x_{22}), \\
+            & x_{23} = \frac{g_{22} g_{23}}{2} (x_{22} - x_{33}) = -\frac{g_{11}g_{23}}{2} (x_{22} - x_{33}), \\
+            & x_{34} = \frac{g_{33} g_{34}}{2} (x_{33} - x_{44}) = -\frac{g_{11}g_{34}}{2} (x_{33} - x_{44}).
+        \end{aligned} \right.
+     \]
+     Lần lượt thay vào các phương trình vị trí $(1,3)$ và $(2,4)$, ta sẽ có
+     \[
+        \left\{ \begin{aligned}
+            & \left( g_{11} g_{13} + \frac{g_{11} g_{22}}{2} \right) (x_{11} + x_{33}) = 0. \\
+            & \left( g_{22} g_{24} + \frac{g_{22} g_{33}}{2} \right) (x_{22} + x_{44}) = 0.
+        \end{aligned} \right.
+     \]
+     Như vậy các ràng buộc cho đường chéo chính của $x$ sẽ là $(x_{11},x_{22},x_{33},x_{44})\in\{(-t,-m,t,m):t,m\in K^*\}$. Sau đó ta sẽ xác định các hệ số trên siêu đường chéo thứ nhất theo công thức, chọn tùy ý các hệ số trên siêu đường chéo thứ 2, ví dụ \( g_{13} = g_{24} = 0\), rồi thay vào phương trình vị trí \( (1,4) \) để xác định $x_{14}$. 
+
+Trường hợp $g_{11} = -g_{44}$ xem ra khá đơn giản do phương trình vị trí $(1,4)$ luôn có thể giải theo \( x_{14} \). Khi đó, bài toán được quy về dạng giải các khối \( 2 \times 2\) và \( 3 \times 3\), và như vậy các hệ số trên đường chéo chính luôn có thể chọn là \( 1 \) hoặc \( -1 \). Tuy nhiên việc giải quyết trường hợp $g_{11} = g_{44}$ sẽ có đôi chút khó khăn.
+
+Lần này, ta sẽ xét riêng từng trường hợp đối với đường chéo của $g$, và lưu ý, theo \cref{rem:nhanxet1}, ta có thể giả sử $g_{11} = 1$. Để rút gọn tính toán, ta sẽ tìm cách đưa \cref{eq:hephuongtrinh_x} về dạng Sylvester \( AX - XB = C \). Trở lại với bài toán xác định phần tử thực ban đầu: tìm \( x \in T_n(K) \) sao cho \( x^{-1} g x = g^{-1} \). Ta dự đoán rằng $x$ có thể chọn sao cho các hệ số trên đường chéo chính là \( 1 \) hoặc \( - 1\). Do vậy, ta đặt $x = d (e + y)$ và $\tilde{g} = dgd$; trong đó \( d\in D_n(K) \) là ma trận đường chéo, với đường chéo chính là \( \pm 1 \), và \( y \) là ma trận tam giác trên ngặt. Khi đó ta có $d^{-1} = d$ và phương trình $x^{-1} g x = g^{-1}$ trở thành
+\begin{align*}
+    (e + y)^{-1} d g d (e + y) = g^{-1}
+    & \quad\Longleftrightarrow\quad
+    \tilde{g} (e + y) = g^{-1} (e + y) \\
+    & \quad\Longleftrightarrow\quad
+    \tilde{g} y - y g^{-1} = g^{-1} - g.
+\end{align*}
+Đồng nhất hệ số hai vế, ta thu được phương trình
+\[
+    (\tilde{g}_{kk} - g^{-1}_{kk}) y_{k,k+r} +  
+    \sum_{i = k + 1}^{k + r - 1} \tilde{g}_{ki} y_{i,k+r} - \sum_{i = k + 1}^{k + r - 1} y_{ki} g^{-1}_{i,k+r} = g^{-1}_{k+r,k+r} - \tilde{g}_{k,k+r} 
+\]
+, với $1 \le k \le n - 1$ và \( 1 \le r \le n-k\) (quy ước: \( \sum_{i = t}^{t - 1}u_t = 0 \)). Ta có $\tilde{g}_{ij} = d_{ii} d_{jj} g_{ij} \in \{-g_{ij}, g_{ij}\}$ và $\tilde{g}_{ii} = d_{ii}^2 g_{ii} = g_{ii}$ với mỗi \( 1 \le i < j \le n \). Hơn nữa từ khai triển $(g^{-1} g)_{kk} = g^{-1}_{kk} g_{kk} = 1$ ta có $g^{-1}_{kk} = g^{-1}_{kk} g_{kk}^2 = g_{kk}$. Do đó phương trình có thể được biến đổi thêm một bước nữa, trở thành
+\begin{multline} \label{eq:phuongtrinh_x_Sylvester}
+    \hspace{0.5cm}
+    (g_{kk} - g_{k+r,k+r}) y_{k,k+r} +  
+    \sum_{i = k + 1}^{k + r - 1} d_{kk} d_{ii} g_{ki} y_{i,k+r} - \sum_{i = k + 1}^{k + r - 1} y_{ki} g^{-1}_{i,k+r} \\
+    = g^{-1}_{k,k+r} - d_{kk} d_{k+r,k+r} g_{k,k+r}. \hspace{0.5cm}
+\end{multline}
+
+Bây giờ ta sẽ chứng minh trường hợp \( (g_{11},g_{22},g_{33},g_{44}) = (1,1,1,1) \).
+    Đầu tiên ta sẽ xử lý các phương trình trên siêu đường chéo thứ nhất (ứng với \( r = 1\)) trong \cref{eq:phuongtrinh_x_Sylvester}. Với \( (g^{-1}g)_{i,i+1} = 0 \) với lần lượt \( i = 1,2,3 \), ta thu được
+    \[
+    \left\{ \begin{aligned}
+        & g^{-1}_{12} = -g_{12}, \\
+        & g^{-1}_{23} = -g_{23}, \\
+        & g^{-1}_{34} = -g_{34}.
+    \end{aligned} \right.
+    \]
+    Thay vào nhóm phương trình trên siêu đường chéo thứ nhất, ta có
+    \[
+    \left\{ \begin{aligned}
+        & (1 + d_{11} d_{22}) g_{22} = 0, \\
+        & (1 + d_{22} d_{23}) g_{23} = 0, \\
+        & (1 + d_{33} d_{44}) g_{34} = 0.
+    \end{aligned} \right.
+    \]
+    Tiếp đến xét trên các siêu đường chéo thứ hai và ba (ứng với  \( r = 2 \) và \( r = 3 \)) trong \cref{eq:phuongtrinh_x_Sylvester}. Cụ thể, ta sẽ có các phương trình
+    \[
+    \left\{ \begin{aligned}
+        & d_{11} d_{22} g_{12} y_{23} + y_{12} g_{23} = g^{-1}_{13} - d_{11} d_{33} g_{13}, \\
+        & d_{22} d_{33} g_{23} y_{34} + y_{23} g_{34} = g^{-1}_{24} - d_{22} d_{44} g_{24}, \\
+        & d_{11} d_{22} g_{12} y_{24} + d_{11} d_{33} g_{13} y_{34} - y_{12}g^{-1}_{24} + y_{13}g_{34} = g^{-1}_{14} - d_{11} d_{44} g_{14}.
+    \end{aligned} \right.
+    \]
+
+    Do hệ số đứng trước $y_{13}$ và $y_{24}$ ở các phương trình siêu đường chéo thứ hai đã bị triệt tiêu, ta có chọn tùy ý hai hệ số này nhằm thỏa mãn phương trình dưới.
+    
+    Bắt đầu với trường hợp \( g_{12} \) và \( g_{34} \) cùng khác \( 0 \). Ta thấy phương trình vị trí \( (1,4) \) luôn có thể giải theo \( y_{13} \) hay \( y_{24} \) sau khi đã xác định các hệ số còn lại. Nếu \( g_{23} \neq 0 \) thì với \( y_{23} \) tùy ý, ta giải được \( y_{12} \) và \( y_{34} \). Lúc này, các  phương trình siêu đường chéo thứ nhất thỏa mãn, ta chọn \( d_{11} = -d_{22} = d_{33} = -d_{44} \). Ngược lại, nếu \( g_{23} = 0 \), ta thấy rằng phương trình vị trí \( (2,3) \) không còn ràng buộc \( d_{22} = -d_{33} \). Do đó ta có thể chọn \( d_{11} = -d_{22} = -d_{33} = d_{44} \). Khi đó, \( g^{-1}_{13} + g_{13} = g^{-1}_{24} + g_{24} = 0 \) nên ta chỉ cần chọn \( y_{23} = 0 \) thì các phương trình siêu đường chéo thứ hai sẽ tự động thỏa. 
+
+    Kế đến, ta xét trường hợp \( g_{12} \neq 0 \) và \( g_{34} = 0 \). Khai triển \( (g^{-1} g)_{24} = 0 \), ta thu được \( g^{-1}_{24} + g_{24} = 0 \). Khi đó nếu cho tùy ý \( y_{23} \) thì từ phương trình vị trí $(1,3)$, ta có thể giải ra $y_{12}$. Đối với phương trình vị trí $(2,4)$, nếu $g_{23} \neq 0$ thì ta cũng sẽ giải $y_{34}$. Ngược lại nếu $g_{23} = 0$, chọn \( d_{22} = -d_{44} \). Bây giờ, ta xét nhóm \( r = 1 \). Do $g_{34} = 0$, ta không cần ràng buộc \( d_{33} = -d_{44} \). Vậy, ta chọn \( d_{11} = -d_{22} = d_{33} = d_{44} \). Trường hợp \( g_{12} = 0 \) và \( g_{34} \neq 0 \), ta có giải theo trình tự đối xứng qua đường chéo phụ.
+
+    Cuối cùng, ta xét trường hợp \( g_{12} = g_{34} = 0 \). Ở trường hợp này, ta sẽ có \( g^{-1}_{13} + g_{13} = g^{-1}_{24} + g_{24} = g^{-1}_{14} + g_{14} = 0\). Khi đó nếu ta chọn \( d_{11} = d_{22} = -d_{33} = -d_{44} \) thì toàn bộ vế phải của các phương trình vị trí $(1,3)$, $(2,4)$ và $(1,4)$ đều thành $0$. Để vế trái của các phương trình này cũng bằng $0$, ta chỉ việc chọn $y_{12} = y_{13} = y_{23} = y_{24} = 0$. Lúc này, do $g_{12} = g_{34} = 0$ và $d_{22} = -d_{33}$ nên các phương trình trên siêu đường chéo thứ nhất thỏa mãn.
+
+Trường hợp $(g_{11},g_{22},g_{33},g_{44}) = (1, 1, -1, 1)$ có thể giải theo trình tự đối xứng qua đường chéo phụ so với trường hợp $(g_{11},g_{22},g_{33},g_{44}) = (1, -1, 1, 1)$. Do đó ta chỉ giải trường hợp sau. Lưu ý rằng ở đây, để phân biệt với trường hợp $(g_{11},g_{22},g_{33},g_{44}) = (1, 1, 1, 1)$, ta sẽ giả sử $\Char(K) \neq 2$.
+
+     Đầu tiên ta sẽ xử lý nhóm \( r = 1\) trong \cref{eq:phuongtrinh_x_Sylvester}. Với $g$ \( (g^{-1}g)_{i,i+1} = 0 \) với lần lượt \( i = 1,2,3 \), ta thu được
+    \[
+    \left\{ \begin{aligned}
+        & g^{-1}_{12} = g_{12}, \\
+        & g^{-1}_{23} = g_{23}, \\
+        & g^{-1}_{34} = -g_{34}.
+    \end{aligned} \right.
+    \]
+    Thay vào các phương trình trên siêu đường chéo \( r = 1 \) cần xét, ta có
+    \[
+    \left\{ \begin{aligned}
+        & 2 y_{12} =  (1 - d_{11} d_{22}) g_{12}, \\
+        & -2 y_{23} =  (1 - d_{22} d_{23}) g_{23}, \\
+        & (1 + d_{33} d_{44}) g_{34} = 0.
+    \end{aligned} \right.
+    \]
+    Tiếp đến, với \( r = 2 \) và \( r = 3 \), \cref{eq:phuongtrinh_x_Sylvester} trở thành.
+    \[
+    \left\{ \begin{aligned}
+        & d_{11} d_{22} g_{12} y_{23} - y_{12} g_{23} = g^{-1}_{13} - d_{11} d_{33} g_{13}, \\
+        & -2 y_{24} + d_{22} d_{33} g_{23} y_{34} + y_{23} g_{34} = g^{-1}_{24} - d_{22} d_{44} g_{24}, \\
+        & d_{11} d_{22} g_{12} y_{24} + d_{11} d_{33} g_{13} y_{34} - y_{12}g^{-1}_{24} + y_{13}g_{34} = g^{-1}_{14} - d_{11} d_{44} g_{14}.
+    \end{aligned} \right.
+    \]
+
+    Ở đây, ta sẽ luôn chọn $d_1 = -d_2 = -d_3$ và $y_{34} = 0$. Khi đó từ phương trình vị trí $(1,2)$ và vị trí $(2,3)$, ta giải được $y_{12} = g_{12}$ và $y_{23} = 0$. Thay vào phương trình vị trí $(1,3)$, ta thu được
+    \begin{align*}
+        & d_{11} d_{22} g_{12} (0) - (g_{12})g_{23} = g_{13}^{-1} + g_{13} \\
+        \quad\Longleftrightarrow\quad
+        & g^{-1}_{13} + g_{12}g_{23} + g_{13} = 0 \\
+        \quad\Longleftrightarrow\quad
+        & g^{-1}_{13} g_{33} + g^{-1}_{12}g_{23} + g^{-1}_{33} g_{13} = 0 \\
+        \quad\Longleftrightarrow\quad
+        & (g^{-1}g)_{13} = 0. 
+    \end{align*}
+    Như vậy phương trình vị trí $(1,3)$ luôn thỏa. 
+    
+    Ta bắt đầu với trường hợp $g_{34} \neq 0$. Để thỏa mãn phương trình vị trí $(3,4)$, ta chọn $d_{11} = -d_{22} = -d_{33} = d_{44}$. Khi đó phương trình vị trí $(2,4)$ có thể giải theo $y_{24}$, và
+    do $g_{34} \neq 0$, phương trình vị trí $(1,4)$ có thể giải theo $y_{13}$.
+    
+    Đối với trường hợp $g_{34} = 0$. Khi đó phương trình vị trí $(3,4)$ sẽ không có ràng buộc cho $d_{33}$ và $d_{44}$. Do đó ta chọn $d_{11} = -d_{22} = -d_{33} = -d_{44}$. Khai triển $(g^{-1}g)_{24} = 0$, ta thu được $g^{-1}_{24} - g_{24} = 0$. Cùng với $y_{12} = g_{12}$ và $y_{23} = y_{34} = 0$, ta thay tất cả vào phương trình vị trí $(2,4)$ và vị trí $(1,4)$ để thu được
+    \[
+        \left\{ \begin{aligned}
+            & -2 y_{24} = g^{-1}_{24} - g_{24} = 0, \\
+            & -g_{12} y_{24} - g_{12}g^{-1}_{24} = g^{-1}_{14} + g_{14}.
+        \end{aligned} \right.
+    \]
+    Phương trình vị trí $(2,4)$ cho ta $y_{24} = 0$. Giá trị này cũng sẽ thỏa mãn phương trình vị trí $(1,4)$, Thật vậy, thay $y_{24} = 0$ vào phương trình vị trí $(1,4)$, ta thu được
+    \[
+        g^{-1}_{14} + g_{12}g^{-1}_{24} + g_{14} = (gg^{-1})_{14} = 0.
+    \] 
+
+Ta đến với trường hợp cuối cùng: $(g_{11},g_{22},g_{33},g_{44}) = (1,-1,-1,1)$. Tương tự như trường hợp trước, ta cũng giả sử $\Char(K) \neq 2$. Ở trường hợp này, ta sẽ chọn $d_{11} = d_{22} = -d_{33} = -d_{44}$. Khai triển $(g^{-1}g)_{i,i+1} = 0$ với lần lượt $i = 1,2,3$, ta có
+\[
+    \left\{ \begin{aligned}
+        & g^{-1}_{12} = g_{12}, \\
+        & g^{-1}_{23} = -g_{23}, \\
+        & g^{-1}_{34} = g_{34}.
+    \end{aligned} \right.
+\]
+Khi đó với $r = 1$, \cref{eq:phuongtrinh_x_Sylvester} trở thành
+    \[
+    \left\{ \begin{aligned}
+        & 2 y_{12} = (1 - d_{11} d_{22}) g_{12} = 0, \\
+        & 0 = (1 + d_{22} d_{33}) g_{23} = 0 g_{23}, \\
+        &-2 y_{34} = (1 - d_{33} d_{44}) g_{34} = 0.
+    \end{aligned} \right.
+    \]
+    Ta giải được $y_{12} = y_{34} = 0$ và $y_{23}$ tùy ý. Ở đây, ta cũng chọn $y_{23} = 0$. Thay vào phương trình siêu đường chéo thứ hai (ứng với $r = 2$), ta có
+    \[
+        \left\{ \begin{aligned}
+            & 2 y_{13} = g^{-1}_{13} + g_{13}, \\
+            & -2 y_{24} = g^{-1}_{24} + g_{24}. 
+        \end{aligned} \right.
+    \]
+    Nhân hai vế của phương trình vị trí $(1,4)$ cho $2$ và thay $y_{13}$, $y_{24}$ đã tính ở trên, ta thu được
+    \begin{align*}
+        & -g_{12} g^{-1}_{24} - g_{12} g_{24} - g_{13}^{-1} g_{34} - g_{13} g_{34} = 2 g_{14}^{-1} + 2 g_{14} \\
+        \quad\Longleftrightarrow\quad
+        & (g_{14}^{-1} + g_{13}^{-1} g_{34} + g_{12}g_{24} + g_{14}) + (g_{14}^{-1} + g_{12} g^{-1}_{24} + g_{13} g_{34} + g_{14}) = 0 \\
+        \quad\Longleftrightarrow\quad
+        & (g^{-1}g)_{14} + (gg^{-1})_{14} = 0.
+    \end{align*}
+    Vậy phương trình vị trí $(1,4)$ đã thỏa mãn.
+\end{proof}
+ 
+Một cách tự nhiên, ta đặt ra câu hỏi
+
+\begin{prob*}
+    Liệu tập các phần tử thực trong nhóm $T_n(K)$ có trùng với $\pm UT_n(K)$ trong trường hợp tổng quát?
+\end{prob*}
+
+Ma trận này không đồng dạng với nghịch đảo của nó trong $U_{13}(\mathbb{F}_2)$, một nhóm ma trận lớn hơn chứa $T_{13}(\mathbb{F})$ của chúng ta. Người đọc có thể kiểm tra ký hiệu $U_{13}(\mathbb{F}_2)$ trong \cite{IsaacsKaraguezian1998}.
+
+Trở lại với các kết quả chính, đầu tiên, sẽ khảo sát nhóm các ma trận tam giác trên đơn vị. Ta sẽ đi chứng minh \cref{thm:main1.3}.
+
+\begin{proof}
+Cho $g\in UT_n(K)$. Giả sử phương trình $gxg=x$ có nghiệm $x\in UT_n(K)$. Khi đó $(gxg)_{i,i+1}=x_{i,i+1}$ với mọi $1\le i\le n-1$. Điều này tương đương với $2g_{i,i+1}+x_{i,i+1}=x_{i,i+1}$, và vì $\Char(K)\neq2$, ta có $g_{i,i+1}=0$. Giả sử $g_{i,i+s} = 0$ với $i=1,\dots,n-s$ và $1\leq s\leq r$. Khai triển $(gxg)_{i,i+r+1}=x_{i,i+r+1}$, ta thu được
+\begin{gather*}
+    1\cdot1\cdot g_{i,i+r+1} + \left(g_{i,i+r+1}\cdot\sum_{i+1\leq s\leq i+r+1}x_{i+1,s}g_{s,i+r+1}\right) + \\
+    \cdots + \left(g_{i,i+r}\cdot\sum_{i+r\leq s\leq i+r+1}x_{i+r,s}g_{s,i+r+1}\right) + g_{i,i+r+1}\cdot1\cdot1 = x_{i,i+r+1}.
+\end{gather*}
+Do $g_{i,i+s}=0$ với mọi $1\leq s\leq r$, ta thu được $2g_{i,i+r+1}+x_{i,i+r+1}=x_{i,i+r+1}$ nên $g_{i,i+r+1}=0$. Suy ra $g_{i,i+r}=0$ với mọi $1\leq r\leq n-1$. Như vậy $g$ phải là ma trận đơn vị.
+\end{proof}
+
+Đối với trường hợp $T_n(K)$, việc xác định tập tất cả các phần tử thực không đơn giản như vậy.
+
+Ta biết rằng (xem thêm [16]) nhóm $GL_n(K)$ được sinh bởi các ma trận đường chéo dạng $e+(\beta-1)e_{nn}$ với $\beta\in K^*$, và các phần tử có dạng $t_{ij}(\alpha):=e+\alpha e_{ij}$ với $i\neq j$, $\alpha\in K^*$. Các $t_{ij}(\alpha)$ này được gọi là các transvection. Nhóm các ma trận tam giác trên được sinh bởi các ma trận đường chéo và các tranvection $t_{ij}(\alpha)$ với $i<j$. Ta có kết quả sau.
+
+\begin{prop}\label{prop:transvections}
+Cho $K$ là một trường tùy ý và $n \in \mathbb{N}$.
+\begin{thmenum}
+    \item Mọi ma trận đường chéo $d = {\rm diag}(\beta_1, \dots, \beta_n)$ trong đó $\beta_i \in \{1, -1\}$ với mọi $1\leq i\leq n$, đều là phần tử thực trong $T_n(K)$.
+    \item Với mọi $i<j$, $t_{ij}(\alpha)$ là phần tử thực trong $T_n(K)$.
+    \item Nếu $g = \prod_{u=i+1}^{n} t_{iu}(\alpha_u)$, thì $g$ là một phần tử thực trong $T_n(K)$.
+\end{thmenum}
+\end{prop}
+
+\begin{proof}
+(1) Vì $d^{-1} = d$, ta có $e^{-1} d e = d = d^{-1}$.
+
+(2) Thay $g = t_{ij}(\alpha)$ vào \cref{eq:hephuongtrinh_x}, ta thấy $x$ có thể là bất kỳ ma trận nào thỏa mãn $x_{ii} + x_{jj} = 0$, $x_{ui} = 0$ với mọi $1 \leq u < i$, và $x_{jv} = 0$ với mọi $j < v \leq n$.
+
+(3) Từ khẳng định trên, kết hợp với tính giao hoán của họ các ma trận $t_{i,i+1}(\alpha_1), \dots, t_{in}(\alpha_{n-i})$. Ta thu được $x$ là ma trận thỏa mãn $x_{i+1,i+1} = x_{i+2,i+2} = \dots = x_{nn} = -x_{ii}$, $x_{ui} = 0$ với mọi $1 \leq u < i$ và $x_{uv} = 0$ với mọi $i < u < v \leq n$. 
+\end{proof}
+
+Bây giờ, sẽ chứng minh \cref{thm:main1.1}.
+
+\begin{proof}
+Theo ý (2) của Nhận xét 1, ta chỉ cần chứng minh định lý cho trường hợp $UT_n(K)$. Từ định nghĩa của $g \in UT_n(K)$, ta có $g_{kk} = g_{k+r, k+r} = 1$ với mọi $g$ và mọi $k, r$. Do đó, hệ phương trình \cref{eq:hephuongtrinh_x} được thu gọn thành
+\[ \sum_{\substack{k \leq i \leq j \leq k+r \\ (i,j) \neq (k, k+r)}} g_{ki} x_{ij} g_{j, k+r} = 0. \]
+
+Áp dụng \cref{lem:bode2.2}, ta có thể giả sử $g = e + \sum_{i=1}^{n-m} g_{i, i+m} e_{i, i+m}$. Khi đó, hệ phương trình của chúng ta có thể thu gọn tiếp như sau:
+\begin{gather*}
+    \sum_{j=k}^{k+r-1} x_{kj} g_{j, k+r} + g_{k, k+m} \sum_{j=k+m}^{k+r} x_{k+m, j} g_{j, k+r} = 0\\
+    x_{k, k+r-m} g_{k+r-m, k+r} + g_{k, k+m} \left( x_{k+m, k+r-m} g_{k+r-m, k+r} + x_{k+m, k+r} g_{k+r, k+r} \right) = 0\\
+    x_{k, k+r-m} g_{k+r-m, k+r} + g_{k, k+m} x_{k+m, k+r-m} g_{k+r-m, k+r} + g_{k, k+m} x_{k+m, k+r} = 0.
+\end{gather*}
+
+Do $x$ có cấu trúc tam giác trên nên với $r < m$ phương trình trở thành dạng $0 = 0$. Với $r,s\geq m$, ta có
+\begin{equation*}
+\left\{
+\begin{aligned}
+    &g_{k,k+m} x_{k+m,k+m} + g_{k,k+m} x_{kk} = - g_{k,k+m}^2 x_{k+m,k} \ (= 0) \\
+    &g_{k,k+m} x_{k+m,k+m+1} + g_{k+1,k+m+1} x_{k,k+1} = - g_{k,k+m} g_{k+1,k+m+1} x_{k+m,k+1} \\
+    &g_{k,k+m} x_{k+m,k+m+2} + g_{k+2,k+m+2} x_{k,k+2} = - g_{k,k+m} g_{k+2,k+m+2} x_{k+m,k+2} \\
+    &\cdots \\
+    &g_{k,k+m} x_{k+m,k+s} + g_{k+s-m,k+s} x_{k,k+s-m} = - g_{k,k+m} g_{k+s-m,k+s} x_{k+m,k+s-m},
+\end{aligned}
+\right.
+\end{equation*}
+Hệ này có thể được giải bằng quy nạp. Ta xét họ phương trình đầu tiên:
+\begin{equation*}
+\left\{
+\begin{aligned}
+    &g_{1, 1+m} x_{1+m, 1+m} = - g_{1, 1+m} x_{11}\,, \\
+    &g_{2, 2+m} x_{2+m, 2+m} = - g_{2, 2+m} x_{22}\,, \\
+    &g_{3, 3+m} x_{3+m, 3+m} = - g_{3, 3+m} x_{33}\,, \\
+    &\cdots \\
+    &g_{n-m, n} x_{nn} = - g_{n-m, n} x_{n-m, n-m}\,.
+\end{aligned}
+\right.
+\end{equation*}
+Ta thấy rằng có thể chọn các hệ số $x_{11}, \dots, x_{mm}$ tùy ý, với điều kiện là chúng phải khả nghịch. Sau đó, dựa vào các giá trị khởi tạo này, ta có thể xác định các hệ số còn lại trên đường chéo chính của $x$. Xét họ phương trình thứ hai:
+\begin{equation*}
+\left\{
+\begin{aligned}
+    &g_{1,1+m} x_{1+m,2+m} = - g_{2,2+m} x_{12} - g_{1,1+m} g_{2,2+m} x_{1+m,2}\,, \\
+    &g_{2,2+m} x_{2+m,3+m} = -g_{3,3+m} x_{23} - g_{2,2+m} g_{3,3+m} x_{2+m,3}\,, \\
+    &g_{3,3+m} x_{3+m,4+m} = -g_{4,4+m} x_{34} - g_{3,3+m} g_{4,4+m} x_{3+m,4}\,, \\
+    &\cdots \\
+    &g_{n-1-m,n-1} x_{n-1,n} = - g_{n-m,n} x_{n-m-1,n-m} - g_{n-m-1,n-1} g_{n-m,n} x_{n-1,n-m}\,.
+\end{aligned}
+\right.
+\end{equation*}
+Một lần nữa, chọn tùy ý $x_{12}, \dots, x_{m,m+1}$. Do $g_{i,i+m} \neq 0$, ta tính được các hệ số còn lại trên siêu đường chéo này.
+Tương tự, ta xét họ phương trình siêu đường chéo thứ $s-m$.
+\begin{equation*}
+\left\{
+\begin{aligned}
+    &g_{1,1+m} x_{1+m,1+s} = - g_{1+s-m,1+s} x_{1,1+s-m} - g_{1,1+m} g_{1+s-m,1+s} x_{1+m,1+s-m}\,, \\
+    &g_{2,2+m} x_{2+m,2+s} = - g_{2+s-m,2+s} x_{2,2+s-m} - g_{2,2+m} g_{2+s-m,2+s} x_{2+m,2+s-m}\,, \\
+    &\cdots \\
+    &g_{n-s,n+m-s} x_{n+m-s,n} = - g_{n-m,n} x_{n-s,n-m} - g_{n-s,n+m-s} g_{n-m,n} x_{n+m-s,n-m}\,.
+\end{aligned}
+\right.
+\end{equation*}
+Các hệ số $x_{i+m,i+s-m}$ nằm bên dưới siêu đường chéo thứ $s-m$, do đó đã được xác định từ các bước trước. Lần này ta cũng chọn tùy ỳ $x_{1,1+s-m},\dots,x_{ms}$. Và do $g_{i,i+m} \neq 0$, ta tính được các hệ số còn lại của phương trình. 
+\end{proof}
+
+Chú ý, ta có thể chọn tùy ý một vài hệ số đầu tiên $x_{11},x_{22},\dots,x_{ii}$ trên đường chéo chính và những hệ số $x_{jj}$ tiếp theo sẽ có dạng $\pm x_{uu}$ với $u\leq i$ nào đó. Như vậy, nếu ta chọn $x_{uu}\in\{-1,1\}$ với mọi $u\leq i$, ta thu được toàn bộ đường chéo chính đều là $\pm1$. Vì thế nếu một ma trận thuộc $UT_n^{m\pm}(K)$ thực trong $T_n(K)$ thì nó cũng thực trong $\pm UT_n(K)$.  
+
+Ta thấy rằng ma trận đồng dạng với ma trận thực cũng là một ma trận thực, và tổng trực tiếp của các ma trận thực cũng là một ma trận thực. Đây chính là chìa khóa để chứng minh \cref{thm:main1.2}.
+
+\begin{proof}
+Giả sử mọi trị riêng của $g \in GL_n(K)$ là $1$ hoặc $-1$. Khi đó $g$ đồng dạng với dạng Jordan $\tilde{g}$ của nó, điều hiển nhiển đối với $T_n(K)$ (để biết thêm thông tin về dạng Jordan, xem \cite{Serre2002}). Theo ý thứ nhất của \cref{rem:nhanxet1}, mọi khối Jordan với toàn bộ đường chéo chính là $\pm1$ và mọi ma trận đường chéo với toàn bộ đường chéo chính là $\pm 1$ đều là ma trận thực. Hiển nhiên, tổng trực tiếp của các khối này cũng là thực. Điều này chứng minh cho định lý trên. 
+\end{proof}
+
+Hơn nữa, tương tự như những gì đã được thực hiện trong chứng minh trước đó, chúng ta cũng có thể chứng minh định lý sau đây, vốn đã được biết đến, chẳng hạn ở \cite{GillSingh2011a} (hoặc cũng được đề cập đến ở \cite{GillSingh2009,GillSingh2011b}).
+
+\begin{thm}\label{thm:2.5}
+Cho \(K\) là một trường đóng đại số và \(n\in\mathbb{N}\).  
+Khi đó \(g\in GL_n(K)\) là phần tử thực nếu và chỉ nếu dạng Jordan của \(g\) có tính chất sau: nếu trong \(g\) có \(r\) khối Jordan \(J_k(\alpha):=\alpha\cdot e+\sum_{i=1}^{k-1} e_{i,i+1}\) thì trong \(g\) cũng có \(r\) khối Jordan \(J_k(\alpha^{-1}):=\alpha^{-1}\cdot e+\sum_{i=1}^{k-1}e_{i,i+1}\) tương ứng.
+\end{thm}
+
+\begin{proof}
+Xét \(g\in GL_n(K)\) đã có dạng Jordan. Nếu \(g\) là ma trận thực thì phổ trị riêng của \(g\) trùng với của \(g^{-1}\). Do đó nếu $\alpha$ là một trị riêng của \(g\) thì $\alpha^{-1}$ cũng là một trị riêng với cùng số bội. Gọi ma trận khối Jordan ứng với giá trị riêng \(\alpha\) là
+\begin{equation}\label{eq:ga}
+ g_a=\Diag\bigl(J_{k_1}(\alpha),J_{k_2}(\alpha),\dots,J_{k_t}(\alpha)\bigr),
+\end{equation}
+trong đó \(J_{k_j}(\alpha)=\diag(\alpha,\dots,\alpha)\left(e+\alpha^{-1}\sum_{i=1}^{k_j-1} e_{i,i+1}\right)\). Từ \cref{lem:bode2.1} và \cref{lem:bode2.2}, mỗi khối Jordan \(\left(J_{k_j}(\alpha)\right)^{-1}\) sẽ đồng dạng với ma trận \(\diag\bigl(\alpha^{-1},\dots,\alpha^{-1}\bigr)\left(e-\alpha^{-1}\sum_{i+1}^{k_j-1} e_{i,i+1}\right)\), và ma trận này lại đồng dạng với \(J_{k_j}(a^{-1})\) thông qua \(\diag(1,-\alpha^2,\alpha^4,-\alpha^6,\dots)\). Do đó nếu trong $g$ có một khối \(g_\alpha\) như ở \cref{eq:ga} thì dạng Jordan $g$ của \(g^{-1}\) phải chứa
+\[ g_{\alpha^{-1}} = \Diag\left(J_{k_1}\bigl(\alpha^{-1}\bigr),J_{k_1}\bigl(\alpha^{-1}\bigr),\dots,J_{k_t}\bigl(\alpha^{-1}\bigr)\right).
+\]
+Chiều ngược lại, rõ ràng nếu $g$ và $g^{-1}$ có cùng dạng Jordan thì chúng cũng phải đồng dạng với nhau.
+\end{proof}
+
+Để chứng minh các kết quả tiếp theo, ta cần dùng một vài khái niệm của đại số tuyến tính. Nếu \(a \in M_{n_1 \times m_1}(K)\), \(b \in M_{n_2 \times m_2}(K)\), thì tích Kronecker của chúng, ký hiệu \(a \otimes b\), là ma trận khối có kích thước \(n_1 n_2 \times m_1 m_2\) được định nghĩa bởi
+\[
+a \otimes b =
+\begin{pmatrix}
+a_{11} b & a_{12} b & \cdots & a_{1m_1} b \\
+a_{21} b & a_{22} b & \cdots & a_{2m_1} b \\
+\vdots   & \vdots   &        & \vdots \\
+a_{n_1 1} b & a_{n_1 2} b & \cdots & a_{n_1 m_1} b
+\end{pmatrix}.
+\]
+Hơn nữa, với \(a \in M_{n \times m}(K)\), ta định nghĩa
+\[
+{\rm vec}(a) = (a_{11}, a_{21}, \ldots, a_{n1}, a_{12}, a_{22}, \ldots, a_{n2}, \ldots, a_{1m}, a_{2m}, \ldots, a_{nm})^{T}.
+\]
+Chúng ta quan tâm đến sự đồng dạng của các các ma trận khối chéo. Có thể kiểm tra rằng ma trận
+\[
+\begin{pmatrix}
+b_1 & c \\
+0   & b_2
+\end{pmatrix}
+\]
+đồng dạng với
+\[
+\begin{pmatrix}
+b_1 & 0 \\
+0   & b_2
+\end{pmatrix}
+\]
+bởi
+\[
+x = \begin{pmatrix}
+x_1 & y \\
+0   & x_2
+\end{pmatrix},
+\]
+nếu và chỉ nếu hệ sau thỏa mãn:
+\begin{equation}\label{eq:hekhoidongdang}
+\left\{\begin{aligned}
+&x_1 b_1 x_1^{-1} = b'_1, \\
+&x_2 b_2 x_2^{-1} = b'_2, \\
+&b_1 (yx_2^{-1}) - (yx_2^{-1}) b_2 = -c.
+\end{aligned}\right.
+\end{equation}
+Hai phương trình đầu có thể được giải quyết một cách dễ (thậm chí ta có thể chọn \(x_1, x_2\) là các ma trận đơn vị). Tuy nhiên việc giải phương trình thứ ba có thể gặp đôi chút trở ngại
+
+Vì vậy, ta cần quan tâm đến các phương trình ma trận dạng \(A X - X B = C,\) với $A,B$ là các ma trận vuông. Phương trình này được gọi là phương trình Sylvester (chúng đã được nghiên cứu trong \cite{JiangWei2003,LancasterTismenetsky1985,Roth1952} cũng như các bài báo khác). Đặc biệt, trong \cite{JiangWei2003}, chúng ta có thể tìm thấy kết quả sau (Lemma 2.1.).
+
+\begin{lem}\label{lem:2.6}
+Cho \(A\in M_{m\times m}(\mathbb{C})\), \(B\in M_{n\times n}(\mathbb{C})\) và
+\(C\in M_{m\times n}(\mathbb{C})\).
+
+(1) Phương trình 
+\(X - A X B = C\)
+có nghiệm nếu và chỉ nếu
+\[
+\operatorname{rank}\bigl(I_{mn} - A \otimes B^{T}\bigr)
+=
+\operatorname{rank}\bigl(I_{mn} - A \otimes B^{T},\; \operatorname{vec}(C)\bigr).
+\]
+
+(2) Phương trình
+\(
+X - A X B = C
+\)
+có nghiệm duy nhất khi và chỉ khi \(\lambda_i\mu_j \neq 1\), trong đó \(\lambda_1,\dots,\lambda_m\) và
+\(\mu_1,\dots,\mu_n\) là các giá trị riêng tương ứng của \(A\) và \(B\).
+\end{lem}
+
+Dùng \cref{lem:2.6}, ta có thể dễ dàng chứng minh các điều sau.
+
+\begin{prop}\label{prop:2.7}
+Giả sử \(\Char(K)\neq 2\). Cho \( g\in\pm UT_n(K) \) có dạng
+\[
+g=\begin{pmatrix} b_1 & c \\[4pt] 0 & b_2 \end{pmatrix},
+\]
+với \(b_1\in UT_p(K)\), \(b_2\in -UT_{n-p}(K)\) (hay \(b_1\in -UT_p(K)\),
+\(b_2\in UT_{n-p}(K)\)), và giả sử \(b_1\) và \(b_2\) là các phần tử thực tương ứng trong
+\(T_p(K)\) và \(T_{n-p}(K)\). Khi đó \(g\) là phần tử thực trong \(T_n(K)\).
+\end{prop}
+
+\begin{proof}
+Ta cần chứng minh \(g\) đồng dạng với \(\Diag(b_1,b_2)\) bằng cách chứng minh hệ \cref{eq:hekhoidongdang} có nghiệm. Ta có thể chọn \(x_1\) và \(x_2\) là ma trận
+đơn vị kích thước \(p\) và \(n-p\). Bây giờ ta tập trung vào phương trỉnh thứ ba. Áp dụng \cref{lem:2.6}, ta thấy phương trình trên có nghiệm duy nhất khi và chỉ khi các trị riêng \(\lambda_i\) của \(b_1\)
+và \(\mu_j\) của \(b_2\) thỏa \(\lambda_i\mu_j\neq1\). Do $\lambda_i=1$ và $\mu_j=-1$ với mọi \(i\), \(j\). Như vậy \(g\) đồng dạng với \(\Diag(b_1,b_2)\), và vì các khối \(b_1,b_2\) đều là phần tử thực nên \(g\) cũng
+là phần tử thực trong \(GL_n(K)\).
+
+\end{proof}
+
+\begin{prop}\label{prop:2.8}
+Cho \(g\in\pm UT_n(K)\) có dạng 
+\[g=\begin{pmatrix} b_1 & c \\[4pt] 0 & b_2 \end{pmatrix},\]
+với \(b_1\in \pm D_p(K)\), \(b_2\in \pm D_{n-p}(K)\). Khi đó \(g\) thực trong \(T_n(K)\).
+\end{prop}
+
+\begin{proof}
+Ta cần tìm 
+\[
+x=\begin{pmatrix} x_1 & y \\[4pt] 0 & x_2 \end{pmatrix}\in T_n(K),
+\]
+sao cho \(x^{-1} g x = g^{-1}\). Nếu ta chọn \(x_1=b_1=b_1^{-1}\) và \(x_2=-b_2=-b_2^{-1}\) thì điều kiện cho \(y\) trở thành
+\(y - b_1\,y\,b_2 = 0\). Vì \(b_1,b_2\) là ma trận đường chéo
+với các phần tử chính chỉ là \(1\) hoặc \(-1\), ta có thể kiểm tra rằng
+\(\operatorname{rank}(I - b_1\otimes b_2^{T})=\operatorname{rank}(I - b_1\otimes b_2^{T},\operatorname{vec}(0))\).
+Do đó theo \cref{lem:2.6} phương trình \(y - b_1 y b_2 = 0\) có nghiệm. Như vậy ta đã tìm được $x$ thỏa phương trình và chứng minh được $g$ thực trong $T_n(K)$.
+\end{proof}

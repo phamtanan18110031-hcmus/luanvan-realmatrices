@@ -1,0 +1,70 @@
+% chapters/chapter3.tex
+\chapter{Ứng dụng}
+\label{ch:applications}
+
+\section{Mối liên hệ giữa phần tử thực và đối hợp}
+\label{sec:involutions}
+
+Nền tảng lý thuyết quan trọng thiết lập mối liên hệ giữa cấu trúc đại số của các phần tử thực và tính chất hình học của các phép đối hợp (involutions) trong các nhóm tuyến tính dựa trên các công trình kinh điển của M.J. Wonenburger (1966) \cite{Wonenburger1966} và D.Ž. Djoković (1967) \cite{Djokovic1967}.
+
+Các kết quả này thiết lập một tiêu chuẩn cốt lõi trong nhóm tuyến tính tổng quát $GL_n(K)$: một ma trận $g \in GL_n(K)$ là phần tử thực (liên hợp với nghịch đảo của chính nó) khi và chỉ khi nó có thể biểu diễn dưới dạng tích của hai phép đối hợp $s_1, s_2 \in GL_n(K)$ (với $s_1^2 = s_2^2 = I_n$) \cite{Wonenburger1966,Djokovic1967}. Định lý tương đương này khẳng định rằng một biến đổi tuyến tính $A$ là tích của hai phép đối hợp nếu và chỉ nếu $A$ và $A^{-1}$ là hai ma trận đồng dạng \cite{Djokovic1967}. Kết quả tổng quát này về sau được mở rộng và làm sâu sắc hơn cho các trường hợp cụ thể, chẳng hạn với eigenvalue cho trước \cite{Furtado2008} hoặc trên các trường không giao hoán (skew fields) \cite{Ellers1979}.
+
+Đây chính là cơ sở phương pháp luận để R. Słowik (2013) triển khai các nghiên cứu phân loại tường minh cấu trúc phần tử thực thông qua các lớp liên hợp trong nhóm ma trận tam giác $T_n(K)$ \cite{Slowik2013}, mà các kết quả của luận văn này (Chương 2) dựa trên và mở rộng.
+
+\section{Ứng dụng trong lý thuyết biểu diễn}
+\label{sec:rep-theory}
+
+Khái niệm phần tử thực và phép đối hợp đóng vai trò trung tâm trong lý thuyết biểu diễn nhóm, đặc biệt là trong nghiên cứu tính chất thực của các đặc trưng biểu diễn (characters) và phân loại cấu trúc nhóm ambivalent \cite{JamesLiebeck2001,Armeanu1996}.
+
+\subsection{Giá trị thực của đặc trưng tại các phần tử thực}
+
+Cho $G$ là một nhóm hữu hạn (hoặc nhóm ma trận) và $\rho: G \to GL(V)$ là một biểu diễn phức hữu hạn chiều của $G$ với ký tự tương ứng là $\chi_\rho(g) = \operatorname{tr}(\rho(g))$. Một tính chất nền tảng của ký tự biểu diễn là giá trị của nó tại phần tử nghịch đảo luôn là liên hợp phức của giá trị ký tự tại chính phần tử đó, nghĩa là \cite{JamesLiebeck2001}:
+\[ \chi_\rho(g^{-1}) = \overline{\chi_\rho(g)}, \quad \forall g \in G. \]
+
+Giả sử $g \in G$ là một phần tử thực trong nhóm $G$, tức là tồn tại $x \in G$ sao cho $xgx^{-1} = g^{-1}$. Vì ký tự $\chi_\rho$ là một hàm lớp (bất biến trên các lớp liên hợp), ta có $\chi_\rho(xgx^{-1}) = \chi_\rho(g)$. Từ đó suy ra:
+\[ \chi_\rho(g) = \chi_\rho(xgx^{-1}) = \chi_\rho(g^{-1}) = \overline{\chi_\rho(g)}. \]
+
+Vì một số phức bằng liên hợp phức của chính nó khi và chỉ khi nó là số thực, ta đi đến kết luận: \textbf{ký tự của một biểu diễn phức bất kỳ tại một phần tử thực luôn luôn nhận giá trị thực}.
+
+Hệ quả này liên kết trực tiếp với định nghĩa về các nhóm ambivalent — nhóm mà mọi ký tự bất khả quy của nó đều nhận giá trị thực \cite{Armeanu1996,ArmeanuVarga2001}. Theo lý thuyết cấu trúc, tính ambivalent của một nhóm gắn liền chặt chẽ với sự hiện diện phong phú của các phép đối hợp trong nhóm đó \cite{ArmeanuVarga2001}. Các kết quả phân loại phần tử thực trong nhóm ma trận tam giác $T_n(K)$ trình bày ở Chương 2 do đó cung cấp một công cụ định lượng để xác định chính xác các lớp liên hợp ma trận mà tại đó ký tự biểu diễn bắt buộc phải nhận giá trị thực.
+
+\subsection{Ứng dụng cụ thể vào cấu trúc ma trận tam giác và nhóm tuyến tính}
+
+Dựa trên các kết quả đạt được từ bài báo của R. Słowik \cite{Slowik2013} và các kết quả ở Chương 2 của luận văn, ta có các ứng dụng và hệ quả cụ thể sau cho cấu trúc biểu diễn và đại số của các nhóm con thuộc $GL_n(K)$:
+
+\begin{itemize}
+    \item \textbf{Tính phi ambivalent cực hạn của nhóm đơn vị tam giác $UT_n(K)$.}
+    Theo \cref{thm:main1.3}, đối với một trường $K$ có đặc trưng khác 2 ($\operatorname{char}(K) \neq 2$), phần tử thực duy nhất trong nhóm đơn vị tam giác $UT_n(K)$ là ma trận đơn vị $I_n$. Đây là kết quả gần với kết quả kinh điển của Isaacs--Karagueuzian về involution và đặc trưng trong nhóm ma trận tam giác trên \cite{IsaacsKaragueuzian2005}. Hệ quả trực tiếp trong lý thuyết biểu diễn là $UT_n(K)$ tạo thành một nhóm \textit{phi ambivalent} cực hạn: ngoại trừ ma trận đơn vị, không một phần tử nào khác trong $UT_n(K)$ có ký tự luôn thực trên mọi biểu diễn phức bất khả quy. Điều này cho phép loại bỏ hoàn toàn việc tìm kiếm các lớp liên hợp thực phi tầm thường khi xây dựng bảng ký tự (character table) của $UT_n(K)$.
+
+    \item \textbf{Tiêu chuẩn thực hóa biểu diễn dựa trên phổ trị riêng.}
+    \cref{thm:main1.2} chỉ ra rằng nếu mọi trị riêng của ma trận $g \in GL_n(K)$ đều bằng $1$ hoặc $-1$, thì $g$ là một phần tử thực. Kết quả này dựa trên phép đưa ma trận về dạng chuẩn Jordan (một dạng ma trận tam giác trên trường đóng đại số): các khối Jordan có trị riêng $\pm 1$ luôn liên hợp được với nghịch đảo của chính chúng. Ứng dụng thực tiễn của kết quả này là: thay vì phải giải phương trình liên hợp phi tuyến $xgx^{-1} = g^{-1}$ để kiểm tra tính thực, người nghiên cứu chỉ cần xác định phổ trị riêng của ma trận. Nếu phổ trị riêng nằm trong tập $\{1, -1\}$, ta có thể kết luận ngay $\chi(g) \in \mathbb{R}$ với mọi biểu diễn phức của nhóm chứa $g$.
+
+    \item \textbf{Phương pháp phân tích ma trận khối tam giác qua phương trình Sylvester.}
+    Kế thừa tư tưởng phân tách không gian vector thành tổng trực tiếp các không gian con bất biến, các kết quả về ma trận khối tam giác (Mệnh đề 2.7 và 2.8 của luận văn) chỉ ra rằng: nếu một ma trận khối tam giác có các khối trên đường chéo chính thuộc $UT_p(K)$ và $-UT_{n-p}(K)$, và các khối này đều là phần tử thực trong nhóm tương ứng của chúng, thì toàn bộ ma trận khối đó cũng là một phần tử thực trong $T_n(K)$. Việc chứng minh kết quả này dựa trên tính giải được của phương trình ma trận Sylvester dạng $AX - XB = C$ \cite{Roth1952,JiangWei2003}, mở ra một phương pháp mang tính xây dựng để tổng hợp các phần tử thực trong $T_n(K)$ từ các khối thành phần độc lập.
+\end{itemize}
+
+\section{Nhận xét tổng kết}
+\label{sec:remarks-open-problems}
+
+\begin{itemize}
+  \item Chứng minh trong Chương 2 cho thấy cấu trúc tam giác cung cấp một khung thuận tiện để giải các phương trình đồng dạng bằng quy nạp theo các đường chéo phụ; điều này là chìa khóa để chứng minh rằng mọi phần tử trong $UT_n^{m\pm}(K)$ là phần tử thực.
+  \item Mở rộng sang $GL_n(K)$ bằng dạng Jordan (\cref{sec:rep-theory}) cho thấy điều kiện về trị riêng (tất cả thuộc $\{1,-1\}$) là một điều kiện đủ mạnh để đảm bảo tính thực của phần tử, mặc dù chưa phải điều kiện cần trong trường hợp tổng quát.
+  \item Tiêu chuẩn trên trường đóng đại số (\cref{thm:2.5}) cung cấp một mô tả tổng quát hơn về tập phần tử thực trong $GL_n(K)$ dựa trên phân bố khối Jordan, và có thể xem như một hướng tiếp nối tự nhiên của các nghiên cứu về lớp liên hợp thực (real conjugacy classes) trong các nhóm tuyến tính đại số \cite{TiepZalesski2005,SinghThakur2008}.
+\end{itemize}
+
+\section{Bài toán mở}
+\label{sec:open-problems}
+
+\begin{enumerate}
+  \item \textbf{So sánh tập phần tử thực trong $T_n(K)$ và $\pm UT_n(K)$ trong trường hợp tổng quát.} Trong một số trường hợp riêng, hai tập này không luôn trùng nhau. Việc mô tả chính xác các điều kiện trên $K$ và $n$ để hai tập trùng nhau là một bài toán thú vị và còn mở.
+
+  \item \textbf{Ảnh hưởng của đặc trưng trường.} Khi $\operatorname{char}(K) = 2$, nhiều lập luận trong Chương 2 (vốn dựa trên việc chia cho 2) không còn đúng; phân tích chi tiết trường hợp đặc biệt này và mô tả tập phần tử thực trong đặc trưng 2 là một hướng cần khảo sát thêm.
+
+  \item \textbf{Liên hệ sâu hơn với lý thuyết biểu diễn nhóm hữu hạn kiểu Lie.} Các công trình gần đây của Gill--Singh về lớp liên hợp thực và strongly real trong $SL_n(q)$, $PGL_n(q)$ \cite{GillSingh2009,GillSingh2011a,GillSingh2011b} và của Tiep--Zalesski cho các nhóm đại số và nhóm hữu hạn kiểu Lie nói chung \cite{TiepZalesski2005} gợi ý một hướng mở rộng tự nhiên: khảo sát xem các kết quả phân loại phần tử thực trong $T_n(K)$ và $UT_n(K)$ của luận văn có thể chuyển tải, dưới dạng nào, sang các nhóm con Borel và nhóm parabolic của các nhóm kiểu Lie tổng quát hơn.
+
+  \item \textbf{Thuật toán kiểm tra tính thực.} Xây dựng một thuật toán hiệu quả để kiểm tra xem một ma trận $g \in GL_n(K)$ cho trước có phải là phần tử thực hay không, dựa trên phân tích Jordan kết hợp với các phép biến đổi tam giác trình bày ở Chương 2, thay vì giải trực tiếp phương trình liên hợp $xgx^{-1} = g^{-1}$.
+\end{enumerate}
+
+Chương này đã trình bày các ứng dụng chính của kết quả phân loại phần tử thực trong $T_n(K)$ (Chương 2): mối liên hệ với định lý Wonenburger--Djoković về tích hai phép đối hợp, hệ quả đối với tính ambivalent và giá trị thực của ký tự biểu diễn, mở rộng sang $GL_n(K)$ khi các trị riêng thuộc $\{1,-1\}$, và phương pháp phân tích ma trận khối tam giác qua phương trình Sylvester. Chương cũng đề xuất một số bài toán mở làm hướng nghiên cứu tiếp theo.
+
+Chương tiếp theo (Kết luận chung và phụ lục) sẽ tóm tắt toàn bộ luận văn, nêu đóng góp chính, và đưa vào phụ lục các tính toán theo chỉ số dài, các chứng minh chi tiết bị lược trong thân bài, cùng danh mục tài liệu tham khảo.

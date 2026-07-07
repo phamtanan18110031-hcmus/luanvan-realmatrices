@@ -1,0 +1,270 @@
+% ============================================================
+% OUTLINE NHÁP — Phần tử thực trong các nhóm tuyến tính
+% Đây KHÔNG phải file compile được, chỉ là khung nội dung để
+% chỉnh sửa. Mỗi frame gồm:
+%   - Bullet hiển thị trên slide (giữ tối giản, cắt sau)
+%   - \note{...}: điền văn nói diễn thuyết đầy đủ vào đây
+% Đánh dấu [CẮT?] ở các slide có khả năng bị gộp/bỏ khi rút gọn.
+% ============================================================
+
+% ---------- MỞ ĐẦU ----------
+
+\begin{frame}{Trang bìa}
+% Tên đề tài, tên SV, GVHD, trường
+\note{
+}
+\end{frame}
+
+\begin{frame}{Mục lục}
+% 1. Giới thiệu bài toán
+% 2. Công cụ nền tảng
+% 3. Ba định lý chính + Định lý 2.5
+% 4. Trường hợp n <= 4 (Mệnh đề 2.3)
+% 5. Ma trận khối & phương trình Sylvester
+% 6. Ứng dụng
+% 7. Kết luận
+\note{
+}
+\end{frame}
+
+% ---------- BẬC V: CHƯƠNG 1 — GIỚI THIỆU (tối đa 2 slide) ----------
+
+\begin{frame}{Bài toán: phần tử thực là gì?}
+% - Định nghĩa: g thực nếu liên hợp với g^{-1}
+% - Vì sao quan tâm: liên hệ đến đặc trưng biểu diễn (chi(g) thực)
+% - Đối tượng nghiên cứu: nhóm ma trận tam giác trên T_n(K)
+\note{
+}
+\end{frame}
+
+\begin{frame}{Ba định lý chính (phát biểu, chưa chứng minh)}
+% - Thm 1.1: g trong UT_n^{m+-}(K), m<n => g thực trong T_n(K)
+% - Thm 1.2: mọi trị riêng của g là 1 hoặc -1 => g thực
+% - Thm 1.3: UT_n(K), char != 2 => phần tử thực duy nhất là ma trận đơn vị
+\note{
+}
+\end{frame}
+
+% ---------- BẬC III: NỀN TẢNG BẮT BUỘC (đặt trước Bậc I) ----------
+
+\begin{frame}{Ký hiệu cần thiết}
+% - e_{ij}, diag, Diag (ma trận khối chéo)
+% - "siêu đường chéo thứ r"
+% - UT_n^{m+-}(K), +-UT_n(K), +-D_n(K)
+\note{
+}
+\end{frame}
+
+\begin{frame}{Chuẩn hóa dạng ma trận (Bổ đề 2.1, 2.2) [CẮT?]}
+% - g trong UT_n^{m+}(K) luôn đồng dạng về dạng chỉ có 1 siêu đường chéo khác 0
+% - (g^{-1})_{i,i+m} = -g_{i,i+m}
+% - Mục đích: đơn giản hóa tính toán về sau, không cần chứng minh chi tiết
+\note{
+}
+\end{frame}
+
+\begin{frame}{Phương trình nền tảng}
+% - Từ x^{-1}gx = g^{-1}, khai triển thành hệ phương trình theo (k,r)
+% - Đây là công cụ DUY NHẤT dùng lại cho mọi chứng minh sau
+% - Hệ quả tức thời: g_{kk} = +-1 với mọi k
+\note{
+}
+\end{frame}
+
+% ---------- BẬC I: 3 ĐỊNH LÝ CHÍNH + ĐỊNH LÝ 2.5 (chứng minh đầy đủ) ----------
+
+\begin{frame}{Chứng minh Định lý 1.1 — ý tưởng}
+% - Áp dụng bổ đề 2.2: giả sử g chỉ có 1 siêu đường chéo khác 0
+% - Quy nạp theo từng siêu đường chéo của x
+% - LƯU Ý: đây là chứng minh dài nhất về mặt chỉ số, cân nhắc chỉ nêu
+%   ý tưởng quy nạp + 1 bước minh họa, không show hết
+\note{
+}
+\end{frame}
+
+\begin{frame}{Chứng minh Định lý 1.1 — bước quy nạp minh họa [CẮT?]}
+% - Trình bày 1 họ phương trình cụ thể (ví dụ siêu đường chéo thứ nhất)
+% - Chỉ ra vì sao luôn giải được nhờ g_{i,i+m} != 0
+\note{
+}
+\end{frame}
+
+\begin{frame}{Chứng minh Định lý 1.3}
+% - Giả sử gxg = x có nghiệm trong UT_n(K)
+% - Quy nạp theo r: g_{i,i+r} = 0 với mọi r => g = ma trận đơn vị
+\note{
+}
+\end{frame}
+
+\begin{frame}{Chứng minh Định lý 1.2}
+% - Đưa g về dạng Jordan (đồng dạng, không đổi tính thực)
+% - Mỗi khối Jordan với đường chéo +-1 là ma trận thực
+% - Tổng trực tiếp các khối thực cũng thực
+\note{
+}
+\end{frame}
+
+\begin{frame}{Định lý 2.5 (K đóng đại số) — phát biểu}
+% - g thực <=> với mỗi khối Jordan J_k(alpha), có đúng r khối J_k(alpha^{-1}) tương ứng
+\note{
+}
+\end{frame}
+
+\begin{frame}{Định lý 2.5 — ý tưởng chứng minh}
+% - Khối Jordan J_k(alpha)^{-1} đồng dạng với J_k(alpha^{-1})
+% - Ma trận đường chéo dan dấu dùng để dựng phép đồng dạng
+\note{
+}
+\end{frame}
+
+% ---------- BẬC II: MỆNH ĐỀ 2.3 (n <= 4) ----------
+
+\begin{frame}{Mệnh đề 2.3: vì sao cần thiết}
+% - 3 định lý chính chỉ cho MỘT lớp phần tử thực, không mô tả TOÀN BỘ tập
+% - Với n <= 4: chứng minh được tập phần tử thực = +-UT_n(K) (đầy đủ)
+\note{
+}
+\end{frame}
+
+\begin{frame}{Trường hợp n=2 (khởi động cho quy nạp)}
+% - Biện luận theo (1 - g11 g22) = 0 hay khác 0
+% - Kết luận: luôn chọn được x11, x22 thuộc {-1,1}
+\note{
+}
+\end{frame}
+
+\begin{frame}{Trường hợp n=3 — trình bày kỹ}
+% - Xét (1,3): 1 - g11 g33 khác 0 hay bằng 0
+% - Nhánh g11=g33: chia tiếp theo dấu g22
+% - Kết luận: luôn chọn được đường chéo x thuộc {-1,1}
+\note{
+}
+\end{frame}
+
+\begin{frame}{Trường hợp n=3 — chi tiết nhánh g11=-g22=g33 [CẮT?]}
+% - Giải x12, x23 theo công thức tường minh
+% - Thay vào phương trình (1,3), thu được nghiệm dạng (-t,t)
+\note{
+}
+\end{frame}
+
+\begin{frame}{Trường hợp n=4, g11 != g44 — trình bày sơ}
+% - Quy được về giải khối 2x2 và 3x3 (đã biết từ n=2,3)
+% - Không cần trình bày lại chi tiết, chỉ nêu ý quy về
+\note{
+}
+\end{frame}
+
+\begin{frame}{Trường hợp n=4, đường chéo toàn 1 — thiết lập}
+% - Đặt x = d(e+y), chuyển về phương trình dạng Sylvester
+% - Phương trình (*) tổng quát cho y
+\note{
+}
+\end{frame}
+
+\begin{frame}{n=4, (1,1,1,1) — nhánh g12, g34 khác 0}
+% - Chọn y12 tùy ý, giải y23, y34
+% - Chọn d11=-d22=d33=-d44
+\note{
+}
+\end{frame}
+
+\begin{frame}{n=4, (1,1,1,1) — nhánh g12=g34=0 [CẮT?]}
+% - Chọn d thích hợp để triệt tiêu vế phải
+% - Chọn y=0 toàn bộ
+\note{
+}
+\end{frame}
+
+\begin{frame}{n=4, (1,-1,1,1) — tóm tắt [CẮT?]}
+% - Đối xứng qua đường chéo phụ với case (1,1,-1,1)
+% - Chỉ nêu kết quả, không lặp lại chi tiết
+\note{
+}
+\end{frame}
+
+\begin{frame}{n=4, (1,-1,-1,1) — tóm tắt [CẮT?]}
+% - y12=y34=0, tính y13, y24 tường minh
+% - Kiểm tra phương trình (1,4) tự động thỏa
+\note{
+}
+\end{frame}
+
+% ---------- BẬC II (tiếp): MA TRẬN KHỐI QUA SYLVESTER ----------
+
+\begin{frame}{Phương trình Sylvester — công cụ}
+% - AX - XB = C, điều kiện có nghiệm (Lemma 2.6, trích Jiang-Wei)
+% - Điều kiện nghiệm duy nhất: lambda_i mu_j != 1
+\note{
+}
+\end{frame}
+
+\begin{frame}{Mệnh đề 2.7 — ma trận khối tam giác}
+% - b1 trong UT_p(K), b2 trong -UT_{n-p}(K), cả hai thực => g thực
+% - Áp dụng Lemma 2.6: lambda_i=1, mu_j=-1 nên luôn có nghiệm
+\note{
+}
+\end{frame}
+
+\begin{frame}{Mệnh đề 2.8 — trường hợp ma trận đường chéo}
+% - b1, b2 thuộc +-D(K) => g thực
+% - Chọn x1=b1, x2=-b2, đưa về điều kiện rank
+\note{
+}
+\end{frame}
+
+% ---------- BẬC IV: CÁC KẾT QUẢ CÒN LẠI (chỉ nêu nội dung) ----------
+
+\begin{frame}{Các mệnh đề bổ trợ khác (nêu nhanh)}
+% - Ma trận đường chéo +-1: luôn thực
+% - Transvection t_{ij}(alpha): luôn thực
+% - Tích các transvection cùng dòng: thực
+\note{
+}
+\end{frame}
+
+% ---------- CHƯƠNG 3: ỨNG DỤNG ----------
+
+\begin{frame}{Liên hệ với đối hợp (Wonenburger--Djoković)}
+% - g thực <=> g là tích của 2 đối hợp
+% - Cơ sở phương pháp luận cho hướng nghiên cứu của Słowik
+\note{
+}
+\end{frame}
+
+\begin{frame}{Ứng dụng: đặc trưng biểu diễn}
+% - chi(g^{-1}) = conj(chi(g))
+% - g thực => chi(g) thực với mọi biểu diễn phức
+\note{
+}
+\end{frame}
+
+\begin{frame}{Ứng dụng cụ thể từ kết quả Chương 2}
+% - UT_n(K): phi ambivalent cực hạn (chỉ ma trận đơn vị)
+% - Tiêu chuẩn trị riêng +-1 (Thm 1.2) => công cụ kiểm tra nhanh
+% - Mệnh đề 2.7, 2.8: tổng hợp phần tử thực từ khối con
+\note{
+}
+\end{frame}
+
+\begin{frame}{Bài toán mở (chọn 1-2 để nêu) [CẮT?]}
+% - So sánh T_n(K) và +-UT_n(K) tổng quát
+% - Trường hợp char(K)=2
+% - Liên hệ SL_n(q), PGL_n(q) (Gill-Singh)
+\note{
+}
+\end{frame}
+
+% ---------- KẾT LUẬN ----------
+
+\begin{frame}{Kết luận}
+% - Tóm tắt đóng góp chính
+% - Điểm mở rộng so với Słowik (nếu có)
+\note{
+}
+\end{frame}
+
+\begin{frame}{Cảm ơn / Hỏi đáp}
+\note{
+}
+\end{frame}

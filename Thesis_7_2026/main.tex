@@ -1,0 +1,357 @@
+% ============================================================
+% main.tex — Template khóa luận tốt nghiệp, Khoa Toán, ĐHKHTN
+% ============================================================
+% CẤU TRÚC THƯ MỤC:
+%   thesis/
+%   ├── main.tex               ← file này (preamble + khung tài liệu)
+%   ├── title.tex              ← trang bìa (đọc lệnh \tenSV, \tenKL,... ở dưới)
+%   ├── logo_khtn.png
+%   ├── references.bib         ← toàn bộ tài liệu tham khảo (định dạng BibTeX)
+%   ├── frontmatter/
+%   │   └── loi_cam_on.tex
+%   └── chapters/
+%       ├── loi_mo_dau.tex
+%       ├── chapter1.tex
+%       ├── chapter2.tex
+%       └── chapter3.tex
+%
+% QUY TRÌNH BUILD (phải chạy đúng thứ tự):
+%   1. pdflatex main.tex     ← tạo file .aux
+%   2. bibtex main           ← xử lý tài liệu tham khảo (dùng natbib/bibtex,
+%                              NHẸ và NHANH hơn nhiều so với biblatex+biber)
+%   3. pdflatex main.tex     ← cập nhật số tài liệu tham khảo
+%   4. pdflatex main.tex     ← cập nhật mọi tham chiếu chéo còn lại
+%
+%   Hoặc dùng lệnh tự động (khuyến nghị):
+%       latexmk -pdf main.tex
+%
+%   GHI CHÚ: bản trước dùng biblatex + backend=biber để tách danh mục tham
+%   khảo thành hai mục "Tiếng Việt" / "Tiếng Anh" với defernumbers=true.
+%   Tính năng đó bắt buộc phải dùng biber, và biber (parse .bib + sắp xếp
+%   Unicode) là nguyên nhân chính khiến quy trình build rất chậm / timeout.
+%   Vì không còn bắt buộc phải tách hai mục, file này chuyển sang natbib +
+%   bibtex — chỉ cần 1 lượt bibtex (rất nhanh) thay vì biber, giúp file
+%   nhẹ đi đáng kể. Nếu sau này cần tách lại theo ngôn ngữ, có thể quay về
+%   biblatex+biber như cấu hình cũ.
+% ============================================================
+
+\documentclass[oneside, a4paper, 14pt]{extreport}
+
+% ============================================================
+% [1] NGÔN NGỮ & MÃ HÓA
+% ============================================================
+% Các gói này xử lý tiếng Việt khi biên dịch bằng pdfLaTeX.
+% Nếu chuyển sang LuaLaTeX hoặc XeLaTeX thì thay bằng:
+%   \usepackage{fontspec}     (thay lmodern)
+%   \usepackage{polyglossia}  (thay babel)
+%   \setmainlanguage{vietnamese}
+
+\usepackage[T5]{fontenc}            % encoding T5 — hỗ trợ đầy đủ ký tự tiếng Việt
+\usepackage[utf8]{inputenc}         % file .tex lưu dạng UTF-8
+\DeclareTextSymbolDefault{\DH}{T1}  % tránh xung đột T5/T1 ở ký tự Đ/đ
+\usepackage[vietnamese]{babel}      % dịch nhãn mặc định: "Chapter" → "Chương", v.v.
+\usepackage{lmodern}                % font vector Latin Modern — hiển thị sắc nét khi zoom PDF
+\usepackage{microtype}              % vi-căn chỉnh (microtypography) — dòng văn xuôi đều đẹp hơn
+\usepackage{csquotes}               % trích dẫn đúng chuẩn theo babel
+
+% ============================================================
+% [2] LỀ TRANG & GIÃN DÒNG
+% Theo quy định của trường: trên 30mm, dưới 25mm, trái 30mm, phải 20mm
+% ============================================================
+\usepackage[
+    top    = 30mm,
+    bottom = 25mm,
+    left   = 30mm,
+    right  = 20mm
+]{geometry}
+
+\usepackage{setspace}
+\onehalfspacing          % giãn dòng 1.5 — theo quy định trình bày của trường
+
+\usepackage{indentfirst} % thụt đầu dòng cho đoạn đầu tiên trong mỗi section (chuẩn VN)
+\usepackage{emptypage}   % các trang trắng (khi oneside) không có header/footer
+
+% ============================================================
+% [3] TOÁN HỌC
+% Quy tắc bắt buộc: load nhóm gói này TRƯỚC khi định nghĩa \newtheorem
+% ============================================================
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+%   amsmath   — môi trường toán: equation, align, gather, cases, v.v.
+%   amssymb   — ký hiệu: \mathbb{R}, \varnothing, \leqslant, v.v.
+%   amsthm    — môi trường proof và hệ thống \newtheorem
+%   mathtools — mở rộng amsmath: \coloneqq, \underbracket, \prescript, v.v.
+
+\usepackage{type1cm}    % Sửa lỗi Warning: Font shape `U/rsfs/m/n' not available (Size substitutions)
+\usepackage{mathrsfs}   % \mathscr{L} — chữ hoa dạng thư pháp (dùng cho không gian hàm, v.v.)
+\usepackage{bbm}        % \mathbbm{1} — hàm chỉ thị (indicator function)
+\usepackage{mathdots}   % \iddots — dấu chấm chéo ngược (ngoài \ddots tiêu chuẩn)
+\usepackage{extarrows}  % \xlongequal, \xLongrightarrow — mũi tên dài có nhãn
+
+% ============================================================
+% [4] ĐỒ HỌA & SƠ ĐỒ GIAO HOÁN
+% ============================================================
+\usepackage{graphicx}
+\graphicspath{{./}{./figures/}}          % tìm ảnh ở thư mục gốc và thư mục ./figures/
+\usepackage[dvipsnames, table]{xcolor}   % màu sắc (dvipsnames cho thêm 68 màu đặt sẵn)
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, arrows.meta}
+\usepackage{tikz-cd}                     % sơ đồ giao hoán (commutative diagrams)
+
+% ============================================================
+% [5] BẢNG & DANH SÁCH
+% ============================================================
+\usepackage{array, multirow, booktabs}   % bảng chuyên nghiệp: \toprule, \midrule, \bottomrule
+\usepackage{caption, subcaption}         % chú thích hình/bảng và hình phụ (subfigure)
+
+\usepackage{enumitem}
+%
+% --- itemize: thụt vào 2em, dấu bullet mặc định ---
+\setlist[itemize]{
+    topsep     = 3pt,         % khoảng cách dọc trước và sau toàn bộ danh sách
+    itemsep    = 2pt,         % khoảng cách dọc giữa các mục
+    leftmargin = 2em,         % thụt toàn bộ danh sách 2em vào so với văn bản xung quanh
+    label      = \textbullet
+}
+%
+% --- enumerate: thụt vào 2em, nhãn kiểu (1), (2), (3) — theo phong cách Słowik ---
+%
+%      Cú pháp label:
+%        (\arabic*) → (1), (2), (3)...
+%        (\alph*)   → (a), (b), (c)...
+%        (\roman*)  → (i), (ii), (iii)...
+%
+\setlist[enumerate]{
+    topsep     = 3pt,
+    itemsep    = 2pt,
+    leftmargin = 2em,
+    label      = (\arabic*)   % (1), (2), (3),... — khớp với bài báo gốc của Słowik
+}
+%
+% Nếu cần danh sách lồng nhau cấp 2 dùng (a), (b), (c), bỏ comment dòng sau:
+% \setlist[enumerate, 2]{label = (\alph*)}
+
+% Kiểu cột tùy chỉnh cho môi trường tabular/array
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+
+% ============================================================
+% [6] HEADER / FOOTER
+% ============================================================
+\usepackage{fancyhdr}
+\setlength{\headheight}{18pt}          % Đã tăng lên 18pt để hết lỗi cảnh báo "\headheight too small" với cỡ chữ 14pt
+\pagestyle{fancy}
+\fancyhf{}                             % xóa header/footer mặc định
+\fancyhead[L]{\nouppercase{\leftmark}} % bên trái: tên chương (không tự động in hoa)
+\fancyhead[R]{\thepage}                % bên phải: số trang
+\renewcommand{\headrulewidth}{0.4pt}   % độ dày đường kẻ dưới header
+\fancypagestyle{plain}{                % trang đầu tiên của mỗi chapter dùng style "plain"
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ============================================================
+% [7] ĐỊNH DẠNG CHƯƠNG / MỤC
+% ============================================================
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+    {\LARGE\bfseries}
+    {\chaptername\ \thechapter}
+    {18pt}
+    {\huge}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+% Khoảng cách trước chương đổi thành 0pt để không bị đè vào đường kẻ Header của gói fancyhdr.
+
+% ============================================================
+% [8] HYPERREF — bắt buộc load TRƯỚC cleveref
+% ============================================================
+\usepackage{bookmark} % Load thêm gói này để hỗ trợ xử lý Bookmark Unicode tiếng Việt tốt hơn cho hyperref
+\usepackage[
+    unicode,                  % hỗ trợ Unicode trong bookmark PDF
+    colorlinks      = true,
+    linkcolor       = blue,   % màu link nội bộ (ref, cref, mục lục)
+    citecolor       = red,    % màu link trích dẫn tài liệu
+    urlcolor        = blue,   % màu URL
+    bookmarksnumbered = true, % bookmark PDF hiển thị số chương/mục
+    pdfpagemode     = UseOutlines  % mở PDF với panel bookmark bên trái
+]{hyperref}
+
+% ============================================================
+% [9] CLEVEREF — bắt buộc load SAU hyperref
+% ============================================================
+%
+%   CÁCH DÙNG:
+%     \cref{label}  → tự thêm tên môi trường, chữ thường
+%                     Ví dụ: \cref{thm:chinh}  → "định lý 2.1"
+%     \Cref{label}  → tự thêm tên môi trường, viết hoa chữ đầu câu
+%                     Ví dụ: \Cref{lem:abc}    → "Bổ đề 2.2"
+%     \eqref{label} → tham chiếu phương trình  → "(2.3)"
+%
+%   KHÔNG gõ tay "Định lý", "Bổ đề" trước \ref — dùng \cref thay thế.
+%
+\usepackage[nameinlink, noabbrev]{cleveref}
+
+% Tên tiếng Việt cho các nhãn mặc định (babel chưa dịch hết)
+\addto\captionsvietnam{
+    \renewcommand{\chaptername}{Chương}
+    \renewcommand{\figurename}{Hình}
+    \renewcommand{\tablename}{Bảng}
+    \renewcommand{\contentsname}{Mục lục}
+    \renewcommand{\listfigurename}{Danh sách hình}
+    \renewcommand{\listtablename}{Danh sách bảng}
+    \renewcommand{\appendixname}{Phụ lục}
+    \renewcommand{\bibname}{Tài liệu tham khảo}
+}
+
+% Tên môi trường cho cleveref (dạng số ít / số nhiều)
+\crefname{thm}{định lý}{các định lý}
+\Crefname{thm}{Định lý}{Các định lý}
+\crefname{prop}{mệnh đề}{các mệnh đề}
+\Crefname{prop}{Mệnh đề}{Các mệnh đề}
+\crefname{lem}{bổ đề}{các bổ đề}
+\Crefname{lem}{Bổ đề}{Các bổ đề}
+\crefname{cor}{hệ quả}{các hệ quả}
+\Crefname{cor}{Hệ quả}{Các hệ quả}
+\crefname{prob}{bài toán}{các bài toán}
+\Crefname{prob}{Bài toán}{Các bài toán}
+\crefname{defn}{định nghĩa}{các định nghĩa}
+\Crefname{defn}{Định nghĩa}{Các định nghĩa}
+\crefname{example}{ví dụ}{các ví dụ}
+\Crefname{example}{Ví dụ}{Các ví dụ}
+\crefname{rem}{nhận xét}{các nhận xét}
+\Crefname{rem}{Nhận xét}{Các nhận xét}
+\crefname{chapter}{Chương}{Các chương}
+\Crefname{chapter}{Chương}{Các chương}
+\crefname{section}{Mục}{Các mục}
+\Crefname{section}{Mục}{Các mục}
+\crefname{figure}{Hình}{Các hình}
+\Crefname{figure}{Hình}{Các hình}
+\crefname{table}{Bảng}{Các bảng}
+\Crefname{table}{Bảng}{Các bảng}
+\crefname{equation}{phương trình}{các phương trình}
+\Crefname{equation}{Phương trình}{Các phương trình}
+
+% ============================================================
+% [10] TÀI LIỆU THAM KHẢO — natbib + bibtex
+% ============================================================
+\usepackage[numbers, sort&compress]{natbib}
+\bibliographystyle{unsrtnat}   % đánh số theo thứ tự trích dẫn xuất hiện trong bài
+
+% ============================================================
+% [11] MÔI TRƯỜNG ĐỊNH LÝ
+% ============================================================
+\theoremstyle{plain}                         % phần thân in nghiêng (italic)
+\newtheorem{thm}{Định lý}[chapter]           % Định lý 1.1, 2.3, ...
+\newtheorem{prop}[thm]{Mệnh đề}             % Mệnh đề 1.2  (nối tiếp sau Định lý 1.1)
+\newtheorem{lem}[thm]{Bổ đề}               % Bổ đề 1.3
+\newtheorem{cor}[thm]{Hệ quả}              % Hệ quả 1.4
+\newtheorem{prob}[thm]{Bài toán}            % Đã đổi từ problem thành prob để đồng bộ hoàn toàn với cleveref
+
+\theoremstyle{definition}                    % phần thân không in nghiêng
+\newtheorem{defn}[thm]{Định nghĩa}
+\newtheorem{defnot}[thm]{Định nghĩa và Ký hiệu}
+\newtheorem{example}{Ví dụ}[chapter]        % đánh số riêng: Ví dụ 2.1, 2.2, ...
+\newtheorem{notation}{Ký hiệu}[chapter]
+
+\theoremstyle{remark}                        % không in nghiêng, không in đậm đầu mục
+\newtheorem{rem}{Nhận xét}
+\newtheorem*{prob*}{Đặt vấn đề}
+
+% Định nghĩa một môi trường riêng cho bài báo Toán (tùy chọn để tái sử dụng)
+\newlist{thmenum}{enumerate}{1}
+\setlist[thmenum]{
+    label=(\arabic*),      % Chuyển nhãn thành (1), (2),...
+    labelindent=\parindent, % Thụt lề của nhãn bằng với thụt đầu dòng của đoạn văn
+    leftmargin=*,          % Tự động tính toán lề trái dựa trên nhãn
+    align=left,            % Căn lề trái cho nhãn
+    topsep=0.5ex,          % Khoảng cách nhỏ với đoạn văn phía trên
+    itemsep=0ex            % Khoảng cách giữa các mục cực kỳ khít nhau
+}
+
+% ============================================================
+% [12] MACRO TOÁN HỌC DÙNG CHUNG
+% ============================================================
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\diag}{diag}    % ma trận đường chéo
+\DeclareMathOperator{\Diag}{Diag}    % ma trận đường chéo khối
+\DeclareMathOperator{\tr}{tr}        % Đã thống nhất dùng lệnh ngắn gọn \tr thay vì \trace cũ
+
+% Mở rộng tùy nhu cầu từng chương — bỏ comment khi cần:
+% \DeclareMathOperator{\rank}{rank}
+% \DeclareMathOperator{\Spec}{Spec}
+% \DeclareMathOperator{\Hom}{Hom}
+% \DeclareMathOperator{\End}{End}
+% \DeclareMathOperator{\Aut}{Aut}
+
+% ============================================================
+% KẾT THÚC PREAMBLE
+% ============================================================
+
+% ============================================================
+% THÔNG TIN KHÓA LUẬN
+% Chỉnh các dòng \newcommand bên dưới — title.tex sẽ tự cập nhật.
+% ============================================================
+\newcommand{\tenSV}{Phạm~Tấn~An}
+\newcommand{\mssv}{18110031}
+\newcommand{\tenKL}{Ma trận thực trong các nhóm tuyến tính}
+\newcommand{\tenGVHD}{TS.~Nguyễn~Hữu~Trí~Nhật}
+\newcommand{\tenBM}{Đại~số~và~Lý~thuyết~số}
+\newcommand{\namBV}{2026}
+
+% ============================================================
+% BẮT ĐẦU TÀI LIỆU
+% ============================================================
+\begin{document}
+
+% ---- Trang bìa (không đánh số trang) ----
+\pagenumbering{gobble}
+\input{title.tex}
+
+% ---- Front matter: số trang La Mã (i, ii, iii, ...) ----
+\cleardoublepage
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Lời cảm ơn}
+\include{frontmatter/loi_cam_on}
+
+% Mục lục - Bạn nhớ bỏ comment (%) các dòng dưới đây khi viết nội dung chính thức nhé!
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
+\tableofcontents
+
+% Danh sách hình
+% \cleardoublepage
+% \phantomsection
+% \addcontentsline{toc}{chapter}{\listfigurename}
+% \listoffigures
+
+% Danh sách bảng
+% \cleardoublepage
+% \phantomsection
+% \addcontentsline{toc}{chapter}{\listtablename}
+% \listoftables
+
+% ---- Main matter: số trang Arabic (1, 2, 3, ...) ----
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+
+% ---- Tài liệu tham khảo ----
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{references}
+
+% ---- Phụ lục (bỏ comment nếu cần) ----
+% \appendix
+% \include{chapters/appendix}
+
+\end{document}

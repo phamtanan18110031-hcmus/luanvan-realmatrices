@@ -1,0 +1,27 @@
+\chapter{Giới thiệu}
+Lý thuyết biểu diễn (representation theory) là một nhánh quan trọng của đại số làm việc với các đặc trưng của biểu diễn nhóm (xem, chẳng hạn \cite{JamesLiebeck2001, Kirillov1994, Kirillov1995}). Một đặc trưng (character) $\chi$ của một biểu diễn được gọi là thực nếu tất cả các giá trị của nó là số thực. Ta nói một đặc trưng được thực hóa trên $\mathbb{R}$ nếu tồn tại một biểu diễn $\rho : G \to GL_n(\mathbb{C})$ sao cho với mỗi phần tử $g$ trong nhóm $G$, $\rho(g)$ là một ma trận hệ số thực và $\chi = \text{tr}(\rho(g))$. Vì $\chi(g^{-1}) = \overline{\chi(g)}$ nên ta cần quan tâm đến các phần tử thực và các phần tử đối hợp trong nhóm.
+
+Một phần tử $g$ thuộc nhóm $G$ được gọi là thực nếu nó liên hợp với nghịch đảo của nó. Một phần tử $s$ thuộc nhóm $G$ được gọi là một đối hợp (involution) nếu $s^2 = 1$. Công trình của Knus và cộng sự, \cite{KnusMerkurjevRostTignol1998} cung cấp nhiều thông tin về các đối hợp được xem xét dưới góc độ các hàm số – các dạng, định thức và các đại số với phần tử đối hợp. Chúng cũng được nghiên cứu trong nhiều bài báo, ví dụ như \cite{Ellers1979, Furtado2008,Pankov2005}. Trong \cite{IsaacsKaragueuzian2005} và \cite{DiVincenzoKoshlukovLaScala2006}, chúng ta có thể tìm thấy nhiều kết quả về các đối trong các nhóm và các đại số của ma trận tam giác. Cụ thể, một nhóm hữu hạn được gọi là nhóm ambivalent nếu tất cả các đặc trưng bất khả quy của nó đều có giá trị là thực (tham khảo \cite{Armeanu1996, ArmeanuVarga2001}), những nhóm như vậy chỉ bao gồm các đối hợp.
+
+Nhiều kết quả về các phần tử thực có thể được tìm thấy trong [29, 30] cũng như trong \cite{TiepZalesski2005}. Trong bài luận này, ta tập trung vào các phần tử thực trong các nhóm ma trận tam giác. Các biểu diễn của chúng được nghiên cứu trong nhiều công trình kinh điển như \cite{KerovKirillov1995,Kosyak1990,Kosyak2000,Kosyak2003}. Một vài tác giả cũng xem một số nhóm là tổng quát hóa vô hạn của các nhóm ma trận \cite{AlberioKosyak2005,AlberioKosyak2006}.
+
+Không thể không nhắc đến các bài báo \cite{Wonenburger1966} và \cite{Djokovic1967} tổng hợp  các khái niệm về đối hợp và một phần tử thực trong các nhóm ma trận. Chúng phát biểu rằng trong $GL_n(K)$ một phần là thực nếu và chỉ nếu nó có thể phân tích thành tích của hai đối hợp.
+
+Như đã đề cập, ta quan tâm đến nhóm $T_n(K)$ – nhóm các ma trận tam giác trên với các hệ số trong trường $K$ và các phần tử thực trong nhóm các ma trận tam giác trên này. Ta ký hiệu $UT_n^{m\pm} (K)$ là tập hợp các ma trận tam giác trên mà đường chéo chính chỉ gồm hoặc toàn 1 hoặc toàn $-1$, mà $m-1$ siêu đường chéo đầu tiên phía trên đường chéo chính chỉ gồm các hệ số $0$ và đường chéo thứ $m$ không có hệ số bằng $0$. Ta có kết quả đầu tiên:
+
+\begin{thm} \label{thm:main1.1}
+    Cho $K$ là một trường bất kỳ và $n \in \mathbb{N}$. Nếu $g \in UT_n^{m\pm} (K)$ với $m < n$, thì $g$ thực trong $T_n(K)$.
+\end{thm}
+
+Từ định lý trên, ta sẽ chứng minh
+
+\begin{thm}
+\label{thm:main1.2}
+    Cho $K$ là một trường bất kỳ và cho $n \in \mathbb{N}$. Nếu mọi trị riêng của $g \in GL_n(K)$ là 1 hoặc $-1$, thì $g$ thực.
+\end{thm}
+
+Ta cũng sẽ giải quyết bài toán tìm phần tử thực trong trường hợp $G$ nhóm gồm các ma trận tam giác đơn vị. Nhóm được ký hiệu bởi $UT_n(K)$. Ta sẽ chỉ ra điều sau:
+
+\begin{thm} \label{thm:main1.3}
+    Cho $K$ là một trường bất kỳ với $\Char(K) \neq 2$ và $n \in \mathbb{N}$. Khi đó phần tử thực duy nhất trong $UT_n(K)$ là ma trận đơn vị
+\end{thm}

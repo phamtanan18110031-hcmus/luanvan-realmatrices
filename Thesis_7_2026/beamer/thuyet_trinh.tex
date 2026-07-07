@@ -1,0 +1,237 @@
+\documentclass[11pt, aspectratio=169]{beamer} 
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[protrusion=false]{microtype}
+\usetheme{Boadilla} 
+\usecolortheme{whale}
+\usefonttheme[onlymath]{serif} 
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{mathrsfs}
+\usepackage{extarrows}
+\usepackage{tikz-cd}
+\setbeamertemplate{navigation symbols}{}
+
+% Môi trường định lý
+\theoremstyle{plain}
+\newtheorem{thm}{Định lý}
+\newtheorem{prop}[thm]{Mệnh đề}
+\newtheorem{lem}[thm]{Bổ đề}
+
+\theoremstyle{definition}
+\newtheorem{eg}{Ví dụ} 
+\setbeamertemplate{theorems}[numbered]
+
+\theoremstyle{remark}
+\newtheorem{rem}{Nhận xét}
+\newtheorem{prob}{Đặt vấn đề}
+\newcommand{\prfstart}{\textit{\proofname.}\ }
+\newcommand{\prfend}{\hfill\qedsymbol}
+
+% Macro Toán học
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\Char}{char}
+
+% Bảng màu
+\newcommand{\z}{\textcolor{gray!60}{0}}
+\newcommand{\nz}[1]{\mathbf{#1}}
+
+% THÔNG TIN BÁO CÁO
+\title[Ma trận thực trong nhóm tuyến tính]{MA TRẬN THỰC TRONG CÁC NHÓM TUYẾN TÍNH}
+\author[Phạm Tấn An]{Sinh viên: \textbf{Phạm Tấn An} \texorpdfstring{\\}{ - } GVHD: TS. Nguyễn Hữu Trí Nhật}
+\institute[HCMUS]{Khoa Toán - Tin học \\ Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM}
+\date{08/07/2026}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+\begin{frame}{Nội dung báo cáo}
+    \tableofcontents
+\end{frame}
+
+\section{Giới thiệu vấn đề}
+
+\begin{frame}{Đặt vấn đề}
+    \begin{itemize}
+        \item Một phần tử \( g \in G \) được gọi là \textbf{thực} nếu \( g \) liên hợp với nghịch đảo của chính nó: tồn tại \( x \in G \) sao cho \( xgx^{-1} = g^{-1} \).
+        \item \textbf{Vì sao quan tâm?} Với mọi biểu diễn phức \( \rho: G \to GL_n(\mathbb{C}) \), đặc trưng \( \chi_\rho \) luôn thỏa
+        \[
+            \chi_\rho(g^{-1}) = \overline{\chi_\rho(g)}.
+        \]
+        \item Do đó, nếu \( g \) là phần tử thực thì
+        \[
+            \chi_\rho(g) = \chi_\rho(g^{-1}) = \overline{\chi_\rho(g)} \quad \Longrightarrow \quad \chi_\rho(g) \in \mathbb{R}.
+        \]
+        \item \textbf{Đối tượng nghiên cứu:} nhóm ma trận tam giác trên \( T_n(K) \), với \( K \) là trường bất kỳ.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Các kết quả chính}
+
+Các kết quả chính của khóa luận bao gồm:
+
+\begin{thm} \label{thm:main1.1} 
+    Cho \( K \) là một trường và \( n \in \mathbb{N} \). Nếu \( g \in UT_n^{m \pm}(K) \) với \( m < n \), thì \( g \) thực trong \( T_n(K) \).
+\end{thm}
+
+\begin{thm} \label{thm:main1.2}
+    Cho \( K \) là một trường và \( n \in \mathbb{N} \). Nếu mọi trị riêng của \( g \in GL_n(K) \) là \( 1 \) hoặc \( -1 \) thì \( g \) thực.
+\end{thm}
+
+\begin{thm} \label{thm:main1.3}
+    Cho $K$ là một trường với $\Char(K) \neq 2$ và $n \in \mathbb{N}$. Khi đó phần tử thực duy nhất trong $UT_n(K)$ là ma trận đơn vị.
+\end{thm}
+
+\end{frame}
+
+\section{Các kết quả và chứng minh}
+
+\begin{frame}{Danh sách kí hiệu}
+
+Ta kí hiệu \( e \) là ma trận đơn vị với kích thước phù hợp và \( e_{ij} \) là ma trận có vị trí \( (i,j) \) là \( 1 \), các vị trí còn lại là \( 0 \), \( \diag (\beta_1, \dots, \beta_n) \) là ma trận đường chéo, \( \Diag (b_1, \dots, b_n) \) là ma trận khối đường chéo, ''siêu đường thứ \( r \)'' là \( (g_{1, 1 + r}, \dots, g_{n - r, n}) \). Kí hiệu các lớp ma trận:
+
+\begin{gather*}
+    -UT_n(K) = \{ g \in T_n(K): -g \in UT_n(K) \}; \\
+    \begin{aligned}
+    UT_n^{m+}(K) = \{ & g \in T_n(K): g_{ij} = 0 ~\forall 0<j-i<m, \\ & g_{i,i+m} \neq 0 ~\forall 1 \le i \le n - m \};
+    \end{aligned} \\
+    UT_n^{m-}(K) = \{ g \in  T_n(K): -g \in UT_n^{m+}(K) \}; \\
+    UT_n^{m\pm}(K) = UT_n^{m+}(K) \cup UT_n^{m-}(K); \\
+    \pm UT_n(K) = \{ g \in  T_n(K): g_{ii} \in \{ -1, 1 \} ~\forall 1 \le i \le n \}; \\
+    \pm D_n(K) = \{ \diag(\beta_1, \dots, \beta_n): \beta_i \in \{ -1, 1 \} ~\forall 1 \le i \le n \}.
+\end{gather*}
+
+\end{frame}
+
+\begin{frame}{Ví dụ về ma trận siêu đường chéo}
+    Một vi dụ về ma trận thuộc lớp \( UT_6^{3 \pm}(\mathbb{Q}) \) là
+
+    \[
+        \begin{pmatrix}
+            1 &0 &0 &2 &0 &8 \\
+            0 &1 &0 &0 &3 &7 \\
+            0 &0 &1 &0 &0 &4 \\
+            0 &0 &0 &1 &0 & 0 \\
+            0 &0 &0 &0 &1 &0 \\
+            0 &0 &0 &0 &0 &1
+        \end{pmatrix}.
+    \]
+\end{frame}
+
+\begin{frame}{Các bổ đề và nhận xét}
+
+\begin{rem} \label{rem:nhanxet1}
+Cho \( K \) là một trường bất kỳ và \( g \in G \) là một phần tử thực. Khi đó \( -g \) và \( g^h = h^{-1} g h \), phần tử liên hợp của \( g \) cũng là các phần tử thực.
+\end{rem}
+
+\begin{lem}\label{lem:bode2.1}
+Cho \( K \) là một trường bất kỳ, ta có các khẳng định sau:
+\begin{itemize}
+    \item Nếu \( g \in UT_{n}^{m+}(K) \) thì \( g^{-1} \in UT_{n}^{m+}(K) \) và \( (g^{-1})_{i, i + m} = -g_{i, i + m} \).
+    \item Nếu \( g \in UT_{n}^{m-}(K) \) thì \( g^{-1} \in UT_{n}^{m-}(K) \) và \( (g^{-1})_{i, i + m} = -g_{i, i + m} \).
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{lem}\label{lem:bode2.2}
+Cho $K$ là một trường. Giả sử một số tự nhiên $0<m\le n$, ta có các khẳng định sau:
+\begin{itemize}
+    \item Nếu $g\in UT_{n}^{m+}(K)$, thì $g$ đồng dạng với $\tilde{g} = e + \sum_{i=1}^{n-m} g_{i, i+m} e_{i, i+m}$ trong $T_n(K)$.
+    \item Nếu $g\in UT_{n}^{m-}(K)$, thì $g$ đồng dạng với $\tilde{g} = e + \sum_{i=1}^{n-m} g_{i, i+m} e_{i, i+m}$ trong $T_n(K)$.
+\end{itemize}
+\end{lem}
+
+\prfstart Từ phương trình \( tg = \tilde{g}t \), ta đồng nhất hệ số và quy nạp theo \( r \). 
+\[
+\left\{ \begin{aligned}
+        &t_{k, k + m} = t_{kk}\,, \\
+        &g_{k, k + m} t_{k + m, r} = t_{kk} g_{kr} - \sum_{i = m + 1}^{r - k} g_{k, k + i} t_{k + i, r} ~~\text{với}~~ r \ge k + m + 1.
+\end{aligned} \right.
+\]
+\prfend
+
+\end{frame}
+
+\begin{frame}{Mô tả ma trận thực trong trường hợp kích thước nhỏ}
+
+\begin{prop} \label{prop:menhde2.3}
+Với \( K \) là một trường và \( n \leq 4 \), Tập các phần tử thực trong $T_n(K)$ là $\pm UT_n(K)$.
+\end{prop}
+
+\prfstart Ta sẽ điểm nhanh trường hợp \( n = 3 \) và một trường hợp đặc biệt của \( n = 4 \). Với trường hợp \( n= 3 \), đồng nhất hệ số của \( g x g = x \), ta thu được các phương trình trên siêu đường chéo thứ nhất là
+\[
+\left\{ \begin{aligned}
+    &(1 - g_{11} g_{22}) x_{12} = g_{11} x_{11} g_{12} + g_{12} x_{22} g_{22}, \\
+    &(1 - g_{22} g_{33}) x_{23} = g_{22} x_{22} g_{23} + g_{23} x_{33} g_{33}.
+\end{aligned} \right.
+\]
+Và trên siêu đường chéo thứ hai là
+\[
+    (1 - g_{11} g_{33}) x_{13} = g_{11} x_{11} g_{13} + g_{11} x_{12} g_{23}
+    + x_{22} g_{23} + g_{12} x_{23} g_{33} + g_{13} x_{33} g_{33}.
+\]
+
+\end{frame}
+
+\begin{frame}{Mô tả ma trận thực trong trường hợp kích thước nhỏ}
+
+\begin{itemize}
+    \item Xét trường hợp \( g_{11} = -g_{33} \) và \( \Char(K) \neq 2 \). Lấy tùy ỳ \( x_{11} \in K^*\), dựa trên chứng minh trường hợp \( n = 2 \), ta thấy rằng trong mọi trường hợp, luôn tồn tại \( x_{12} \) và \( x_{22} \) thỏa phương trình vị trí \( (1,2) \). Tương tự, với \( x_{22} \) được xác định trước, luôn chọn được \( x_{23} \) và \( x_{33} \) thỏa phương trình vị trí \( (2,3) \). Từ phương trình vị trí \( (1,3) \), \( x_{13} \) được tính theo các hệ số còn lại.
+
+    \item Xét trường hợp \( g_{11} = -g_{22} = g_{33} \) và \( \Char(K) \neq 2 \). Từ các phương trình vỉ trí \( (1,2) \) và vị trí \( (2,3) \), ta tính được \( x_{12} = g_{11} g_{12} (x_{11} - x_{22}) / 2 \), và \( x_{23} = -g_{11} g_{23} (x_{22} - x_{33}) / 2 \). Thay vào phương trình vị trí \( (1,3) \), ta thu được \( (g_{11} g_{13} + g_{12} g_{23} / 2) (x_{11} + x_{33}) = 0 \). Ta có thể chọn \( x_{11} = - x_{33}) \).
+    \item Xét trường hợp \( g_{11} = g_{22} = g_{33} \). Do hệ số đứng trước \( x_{12} \) và \( x_{23} \) ở các phương trình siêu đường chéo thứ nhất đã bị triệt tiêu nên nếu \( g_{12} \) hoặc \( g_{23} \) khác \( 0 \). Nên ta có thể giải phương trình vị trí \( (1,3) \) theo một trong hai hệ số này. Để thỏa hai phương trình đầu, ta chọn \( x_{11} = -x_{22} = x_{33} \). Nếu \( g_{12} = g_{23} = 0 \) thì ta chỉ cần chọn \( x_{11} = -x_{33} \).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Mô tả ma trận thực trong trường hợp kích thước nhỏ}
+
+Với trường hợp \( n = 4 \) và đường chéo của \( g \) có dạng \( (1, -1, 1, 1) \), ta sử dụng kỹ thuật Sylvester như sau. Tìm \( x \) dưới dạng \( d (e + y) \) với \( d \in \pm D_n(K) \) và \( y \) là ma trận tam giác trên ngặt. Khi đó với \( \tilde{g} = d^{-1} g d \), phương trình \( x^{-1} g x = g^{-1} \) trở thành
+\[
+    \tilde{g} x - x g^{-1} = g^{-1} - g.
+\]
+Bằng kỹ thuật này, ta sẽ xác định được \( d \) và \( y \) như sau.
+\begin{itemize}
+    \item Nếu \( g_{34} \neq 0 \):
+    \begin{itemize}
+        \item Đối với ma trận \( d \): 
+        \[ d_{11} = -d_{22} = -d_{33} = d_{44} = 1. \]
+        \item Đối với ma trận \( y \):
+        \begin{gather*}
+        y_{12} = g_{12}, y_{23} = 0, y_{34} = 0,  y_{14} = 0, \\  
+        y_{24} = -\frac{g^{-1}_{14} + g_{14}}{2}, y_{13} = \frac{g^{-1}_{14} - g_{14} + g_{12}y_{24} + g_{12} g^{-1}_{24}}{g_{34}}.
+        \end{gather*}
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Mô tả ma trận thực trong trường hợp kích thước nhỏ}
+    
+\begin{itemize}
+    \item Nếu \( g_{34} = 0 \):
+    \begin{itemize}
+        \item Đối với ma trận \( d \):
+        \[ d_{11} = -d_{22} = -d_{33} = -d_{44} = 1. \]
+        \item Đối với ma trận \( y \):
+        \[
+        y_{12} = g_{12}, y_{23} = y_{34} = y_{13} = y_{24} = y_{14} = 0.
+        \]
+    \end{itemize}
+\end{itemize}
+Trường hợp đường chéo của \( g \) có dạng \( (1,1,-1,1) \), ta có thể sử dụng công thức 
+\[
+    x^{-1} g x = g^{-1} \Longleftrightarrow x^\tau g^\tau (x^\tau)^{-1} = g^{-1}.
+\]
+Trong đó \( \tau \) là phép đối xứng qua đường chéo phụ, xác định bởi \( x^\tau_{i j} = x_{n - j + 1, n - i + 1} \).
+\prfend
+
+\end{frame}
+
+\end{document}
